@@ -19,6 +19,8 @@ public class BoxSelect : MonoBehaviour
     [SerializeField] private List<GameObject> selectedObjects;
     [SerializeField] private List<GameObject> previousSelection;
 
+    [SerializeField] private GameObject debugSphere;
+
     private float zHeight = 10f;
 
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class BoxSelect : MonoBehaviour
     {
         startPoint = Vector2.zero;
         endPoint = Vector2.zero;
+
     }
 
     // Update is called once per frame
@@ -34,6 +37,10 @@ public class BoxSelect : MonoBehaviour
         CalculateBox3D();
 
         RenderBoxImage();
+
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Physics.Raycast(ray, out RaycastHit hitInfo, 20f, selectLayer);
+        //debugSphere.transform.position = hitInfo.point;
     }
 
     private void CalculateBox3D()
