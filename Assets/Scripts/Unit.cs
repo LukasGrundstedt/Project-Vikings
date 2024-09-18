@@ -7,11 +7,11 @@ public class Unit : Entity
     // Start is called before the first frame update
     void Start()
     {
-        UnitManager.Instance.Units.Add(this.gameObject);
+        UnitManager.Instance.Units.Add(gameObject);
     }
 
     private void OnDestroy()
     {
-        UnitManager.Instance.Units.Remove(this.gameObject);
+        UnitManager.Instance.Units.Remove(gameObject);
     }
 }

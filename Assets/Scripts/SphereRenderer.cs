@@ -23,7 +23,7 @@ public class SphereRenderer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        scale = new Vector3(unitManager.Units.Count * 2f, unitManager.Units.Count * 2f, unitManager.Units.Count);
+        scale = new Vector3(UnitManager.Instance.UnitsSelected.Count * 2f, UnitManager.Instance.UnitsSelected.Count * 2f, UnitManager.Instance.UnitsSelected.Count);
 
         transform.localScale = scale;
 
@@ -35,7 +35,7 @@ public class SphereRenderer : MonoBehaviour
 
         transform.position = circleVector;
 
-        if (objects.Count < unitManager.Units.Count)
+        if (objects.Count < UnitManager.Instance.UnitsSelected.Count)
         {
 
             GameObject circle =
@@ -49,13 +49,18 @@ public class SphereRenderer : MonoBehaviour
             objects.Add(circle);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(1))
         {
-            unitManager.Units[0].GetComponent<NavMeshAgent>().destination = objects[0].transform.position;
-            unitManager.Units[1].GetComponent<NavMeshAgent>().destination = objects[1].transform.position;
-            unitManager.Units[2].GetComponent<NavMeshAgent>().destination = objects[2].transform.position;
+            for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
+            {
+                UnitManager.Instance.UnitsSelected[i].GetComponent<NavMeshAgent>().destination = objects[i].transform.position;
+            }
 
-            Debug.Log(objects[0].transform.position);
+            foreach (var dings in objects)
+            {
+                Destroy(dings.gameObject);
+            }
+            objects.Clear();
         }
     }
 }
