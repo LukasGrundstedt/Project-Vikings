@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class BoxSelect : MonoBehaviour
 {
-    [SerializeField] private RectTransform SelectVisual;
+    [SerializeField] private RectTransform SelectionBox;
 
     private Vector2 startPoint;
     private Vector2 endPoint;
@@ -16,8 +16,11 @@ public class BoxSelect : MonoBehaviour
 
     [SerializeField] LayerMask selectLayer;
 
-    [SerializeField] private List<GameObject> selectedObjects;
-    [SerializeField] private List<GameObject> previousSelection;
+    [SerializeField] private List<GameObject> selectedObjects = new();
+    [SerializeField] private List<GameObject> previousSelection = new();
+
+    [SerializeField] private List<GameObject> currentHighlights = new List<GameObject>();
+    [SerializeField] private List<GameObject> previousHighlights = new List<GameObject>();
 
     [SerializeField] private GameObject debugSphere;
 
@@ -28,7 +31,6 @@ public class BoxSelect : MonoBehaviour
     {
         startPoint = Vector2.zero;
         endPoint = Vector2.zero;
-
     }
 
     // Update is called once per frame
@@ -38,9 +40,22 @@ public class BoxSelect : MonoBehaviour
 
         RenderBoxImage();
 
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Physics.Raycast(ray, out RaycastHit hitInfo, 20f, selectLayer);
-        //debugSphere.transform.position = hitInfo.point;
+        HighlightObjects();
+    }
+
+    private void HighlightObjects()
+    {
+        previousHighlights = new(currentHighlights);
+        currentHighlights.Clear();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit hitInfo, 20f, selectLayer);
+        if (hitInfo.collider != null) currentHighlights.Add(hitInfo.collider.gameObject);
+
+        foreach (GameObject highlight in previousHighlights)
+        {
+            highlight.GetComponent<ISelectable>().VisualizeSelection(currentHighlights.Contains(highlight));
+        }
     }
 
     private void CalculateBox3D()
@@ -71,22 +86,22 @@ public class BoxSelect : MonoBehaviour
     private void RenderBoxImage()
     {
         boxCenter = (startPoint + endPoint) * 0.5f;
-        SelectVisual.position = boxCenter;
+        SelectionBox.position = boxCenter;
 
         boxSize = new (Mathf.Abs(startPoint.x - endPoint.x), Mathf.Abs(startPoint.y - endPoint.y));
 
-        SelectVisual.sizeDelta = boxSize;
+        SelectionBox.sizeDelta = boxSize;
+        Debug.Log(SelectionBox.rect);
     }
 
     private void GetSelection3D()
     {
         selectedObjects.Clear();
 
-        Rect selectionRect = new (boxCenter, boxSize);
-
         foreach (var unit in UnitManager.Instance.Units)
         {
-            if (selectionRect.Contains(Camera.main.WorldToScreenPoint(unit.transform.position)))
+            Debug.Log(Camera.main.WorldToScreenPoint(unit.transform.position));
+            if (SelectionBox.rect.Contains(Camera.main.WorldToScreenPoint(unit.transform.position)))
             {
                 selectedObjects.Add(unit.gameObject);
             }

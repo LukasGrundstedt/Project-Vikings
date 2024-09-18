@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : Entity
+public class UnitDrag : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-        UnitManager.Instance.Units.Add(this.gameObject);
+        
     }
 
-    private void OnDestroy()
+    // Update is called once per frame
+    void Update()
     {
-        UnitManager.Instance.Units.Remove(this.gameObject);
+        
     }
 }
