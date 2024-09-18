@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class UnitManager : MonoBehaviour
@@ -13,37 +12,57 @@ public class UnitManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-<<<<<<< Updated upstream
 
         Units = new List<GameObject>();
-  
-        Units = GameObject.FindGameObjectsWithTag("Unit").ToList();
-=======
->>>>>>> Stashed changes
     }
 
     public void ClickSelect(GameObject unitToAdd)
     {
-
+        DeselectAll();
+        UnitsSelected.Add(unitToAdd);
+        Highlight(unitToAdd, true);
     }
 
     public void ShiftClickSelect(GameObject unitToAdd)
     {
-
+        if (!UnitsSelected.Contains(unitToAdd))
+        {
+            UnitsSelected.Add(unitToAdd);
+            Highlight(unitToAdd, true);
+        }
+        else
+        {
+            UnitsSelected.Remove(unitToAdd);
+            Highlight(unitToAdd, false);
+        }
     }
 
     public void DragClickSelect(GameObject unitToAdd)
     {
-
+        if (!UnitsSelected.Contains(unitToAdd))
+        {
+            UnitsSelected.Add(unitToAdd);
+            Highlight(unitToAdd, true);
+        }
     }
 
     public void DeselectAll()
     {
+        foreach (GameObject unitToRemove in UnitsSelected)
+        {
+            Highlight(unitToRemove, false);
+        }
 
+        UnitsSelected.Clear();
     }
 
     public void Deselect(GameObject unitToDeselct)
     {
 
+    }
+
+    private void Highlight(GameObject obj, bool b)
+    {
+        obj.GetComponent<ISelectable>().VisualizeSelection(b);
     }
 }

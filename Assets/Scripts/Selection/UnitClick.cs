@@ -25,11 +25,18 @@ public class UnitClick : MonoBehaviour
 
             if (Physics.Raycast(ray, out hitInfo, 100f, clickable))
             {
-
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
+                    UnitManager.Instance.ShiftClickSelect(hitInfo.collider.gameObject);
+                }
+                else
+                {
+                    UnitManager.Instance.ClickSelect(hitInfo.collider.gameObject);
+                }
             }
             else
             {
-                UnitManager.Instance.DeselectAll();
+                if (!Input.GetKey(KeyCode.LeftShift)) UnitManager.Instance.DeselectAll();
             }
         }
     }

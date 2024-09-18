@@ -14,6 +14,8 @@ public class BoxSelect : MonoBehaviour
     private Vector2 boxSize;
     private Vector2 boxOffset;
 
+    private Rect selectionBox;
+
     [SerializeField] LayerMask selectLayer;
 
     [SerializeField] private List<GameObject> selectedObjects = new();
@@ -31,59 +33,43 @@ public class BoxSelect : MonoBehaviour
     {
         startPoint = Vector2.zero;
         endPoint = Vector2.zero;
+        DrawBox();
     }
 
     // Update is called once per frame
     void Update()
     {
-        CalculateBox3D();
-
-        RenderBoxImage();
-
-        HighlightObjects();
+        SelectionInput();
     }
 
-    private void HighlightObjects()
-    {
-        previousHighlights = new(currentHighlights);
-        currentHighlights.Clear();
-
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        Physics.Raycast(ray, out RaycastHit hitInfo, 20f, selectLayer);
-        if (hitInfo.collider != null) currentHighlights.Add(hitInfo.collider.gameObject);
-
-        foreach (GameObject highlight in previousHighlights)
-        {
-            highlight.GetComponent<ISelectable>().VisualizeSelection(currentHighlights.Contains(highlight));
-        }
-    }
-
-    private void CalculateBox3D()
+    private void SelectionInput()
     {
         if (Input.GetMouseButtonDown(0))
         {
             startPoint = Input.mousePosition;
+            selectionBox = new();
         }
 
         if (Input.GetMouseButton(0))
         {
             endPoint = Input.mousePosition;
 
-            RenderBoxImage();
+            DrawBox();
+
+            DrawSelection();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            SelectUnits();
+
             startPoint = Vector2.zero;
             endPoint = Vector2.zero;
-            RenderBoxImage();
-
-            GetSelection3D();
-            UpdateHighlights();
+            DrawBox();
         }
     }
 
-    private void RenderBoxImage()
+    private void DrawBox()
     {
         boxCenter = (startPoint + endPoint) * 0.5f;
         SelectionBox.position = boxCenter;
@@ -91,28 +77,43 @@ public class BoxSelect : MonoBehaviour
         boxSize = new (Mathf.Abs(startPoint.x - endPoint.x), Mathf.Abs(startPoint.y - endPoint.y));
 
         SelectionBox.sizeDelta = boxSize;
-        Debug.Log(SelectionBox.rect);
+
+        
     }
 
-    private void GetSelection3D()
+    private void DrawSelection()
     {
-        selectedObjects.Clear();
-
-        foreach (var unit in UnitManager.Instance.Units)
+        if (Input.mousePosition.x < startPoint.x)
         {
-            Debug.Log(Camera.main.WorldToScreenPoint(unit.transform.position));
-            if (SelectionBox.rect.Contains(Camera.main.WorldToScreenPoint(unit.transform.position)))
-            {
-                selectedObjects.Add(unit.gameObject);
-            }
+            selectionBox.xMin = Input.mousePosition.x;
+            selectionBox.xMax = startPoint.x;
+        }
+        else
+        {
+            selectionBox.xMin = startPoint.x;
+            selectionBox.xMax = Input.mousePosition.x;
+        }
+
+        if (Input.mousePosition.y < startPoint.y)
+        {
+            selectionBox.yMin = Input.mousePosition.y;
+            selectionBox.yMax = startPoint.y;
+        }
+        else
+        {
+            selectionBox.yMin = startPoint.y;
+            selectionBox.yMax = Input.mousePosition.y;
         }
     }
 
-    private void UpdateHighlights()
+    private void SelectUnits()
     {
-        foreach (var unit in UnitManager.Instance.Units)
+        foreach (GameObject unit in UnitManager.Instance.Units)
         {
-            unit.GetComponent<ISelectable>().VisualizeSelection(selectedObjects.Contains(unit));
+            if (selectionBox.Contains(Camera.main.WorldToScreenPoint(unit.transform.position)))
+            {
+                UnitManager.Instance.DragClickSelect(unit);
+            }
         }
     }
 }
