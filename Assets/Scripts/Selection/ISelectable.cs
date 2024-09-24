@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public interface ISelectable
+public interface ISelectable : IHighlightable
 {
-    public GameObject SelectVisual { get; set; }
-
     public virtual void VisualizeSelection(bool isSelected)
     {
         SelectVisual.SetActive(isSelected);

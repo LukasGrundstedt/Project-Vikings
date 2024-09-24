@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1150833173807863473}
   - component: {fileID: 5556461934479317186}
   - component: {fileID: 8000685461221936711}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   rotateSpeed: 90
-  zoomSpeed: 1
+  standardZoom: 20
+  zoomSpeed: 5
+  zoomClamp: {x: 1, y: 80}
 --- !u!33 &5556461934479317186
 MeshFilter:
   m_ObjectHideFlags: 0

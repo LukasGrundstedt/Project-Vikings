@@ -5,6 +5,9 @@ using UnityEngine;
 public class Chest : MonoBehaviour, IInteractable
 {
     [field: SerializeField]
+    public GameObject SelectVisual { get; set; }
+
+    [field: SerializeField]
     public GameObject PointParent { get; set; }
 
     // Start is called before the first frame update
