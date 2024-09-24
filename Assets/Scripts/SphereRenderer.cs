@@ -6,12 +6,10 @@ using UnityEngine.AI;
 public class SphereRenderer : MonoBehaviour
 {
     [SerializeField] private LayerMask plane;
-    [SerializeField] private UnitManager unitManager;
     [SerializeField] private GameObject littleCircle;
     private Vector3 scale;
     private Vector3 circleVector;
     [SerializeField] private List<GameObject> objects;
-
 
     // Start is called before the first frame update
     void Start()

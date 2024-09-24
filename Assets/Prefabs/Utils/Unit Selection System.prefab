@@ -122,7 +122,7 @@ MonoBehaviour:
   SelectionBox: {fileID: 575878313405537086}
   selectLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   selectedObjects: []
   previousSelection: []
   currentHighlights: []
@@ -311,10 +311,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickable:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   ground:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!1 &8658966208040516622
 GameObject:
   m_ObjectHideFlags: 0

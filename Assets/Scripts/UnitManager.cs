@@ -16,6 +16,9 @@ public class UnitManager : MonoBehaviour
         Units = new List<GameObject>();
     }
 
+
+
+    #region Selection
     public void ClickSelect(GameObject unitToAdd)
     {
         DeselectAll();
@@ -65,4 +68,5 @@ public class UnitManager : MonoBehaviour
     {
         obj.GetComponent<ISelectable>().VisualizeSelection(b);
     }
+    #endregion
 }
