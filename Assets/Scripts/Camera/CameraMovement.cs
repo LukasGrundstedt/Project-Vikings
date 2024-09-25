@@ -48,7 +48,7 @@ public class CameraMovement : MonoBehaviour
 
     private void CameraZoom()
     {
-        zoomTarget += Input.mouseScrollDelta.y * zoomSpeed * closeupFactor;
+        zoomTarget -= Input.mouseScrollDelta.y * zoomSpeed * closeupFactor;
         zoomTarget = Mathf.Clamp(zoomTarget, zoomClamp.x, zoomClamp.y);
 
         currentZoom = zoomLerp;

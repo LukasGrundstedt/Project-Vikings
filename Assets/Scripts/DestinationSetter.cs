@@ -3,13 +3,14 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SphereRenderer : MonoBehaviour
+public class DestinationSetter : MonoBehaviour
 {
     [SerializeField] private LayerMask plane;
     [SerializeField] private GameObject littleCircle;
     private Vector3 scale;
     private Vector3 circleVector;
     [SerializeField] private List<GameObject> objects;
+    [SerializeField] private Highlighter highlighter;
 
     // Start is called before the first frame update
     void Start()
@@ -47,11 +48,39 @@ public class SphereRenderer : MonoBehaviour
             objects.Add(circle);
         }
 
+        if (highlighter.CurrentHighlight != null)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+            
+            foreach (GameObject obj in objects)
+            {
+                obj.SetActive(false);
+            }
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+
+            foreach (GameObject obj in objects)
+            {
+                obj.SetActive(true);
+            }
+        }
+
+
         if (Input.GetMouseButtonUp(1))
         {
+            
             for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
             {
-                UnitManager.Instance.UnitsSelected[i].GetComponent<NavMeshAgent>().destination = objects[i].transform.position;
+                if (highlighter.CurrentHighlight == null)
+                {
+                    UnitManager.Instance.UnitsSelected[i].GetComponent<NavMeshAgent>().destination = objects[i].transform.position;
+                }
+                else
+                {
+                    UnitManager.Instance.UnitsSelected[0].GetComponent<NavMeshAgent>().destination = highlighter.CurrentHighlight.transform.position;
+                }
             }
 
             foreach (var dings in objects)
@@ -60,5 +89,6 @@ public class SphereRenderer : MonoBehaviour
             }
             objects.Clear();
         }
+
     }
 }

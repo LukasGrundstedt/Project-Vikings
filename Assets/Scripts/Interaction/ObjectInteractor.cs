@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ObjectInteractor : MonoBehaviour
 {
@@ -34,6 +35,11 @@ public class ObjectInteractor : MonoBehaviour
             IInteractable selectable = hitInfo.collider.GetComponent<IInteractable>();
 
             currentPoints = selectable.PointParent;
+
+            if (UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - hitInfo.collider.transform.position.magnitude < 0.5f && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - hitInfo.collider.transform.position.magnitude > -0.5f) 
+            {
+                hitInfo.collider.transform.SetParent(UnitManager.Instance.UnitsSelected[0].transform, true);
+            }
         }
 
         if (currentPoints != null && !currentPoints.activeInHierarchy) currentPoints.SetActive(true);

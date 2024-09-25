@@ -9,6 +9,8 @@ public class Highlighter : MonoBehaviour
 
     private GameObject currentHighlight;
 
+    public GameObject CurrentHighlight { get => currentHighlight; }
+
     // Start is called before the first frame update
     void Start()
     {
