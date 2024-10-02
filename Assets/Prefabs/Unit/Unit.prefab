@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4081999636076231250}
+  - component: {fileID: 8884474259956995868}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 8912188296162575876}
   m_Father: {fileID: 5248971429043234221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8884474259956995868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7102793609232060933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66743303bf5268f42891ae20cbd26365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightHandObj: {fileID: 7102793609232060933}
 --- !u!1 &7525709813629568017
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8075516147783628707}
+  - component: {fileID: 8062552894616801625}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -147,6 +162,19 @@ Transform:
   - {fileID: 1957652799776013134}
   m_Father: {fileID: 5248971429043234221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8062552894616801625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8715471213486993865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ca185aa93fa71845be4c2749e575e5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHandObj: {fileID: 8715471213486993865}
 --- !u!1 &8824837721375528786
 GameObject:
   m_ObjectHideFlags: 0

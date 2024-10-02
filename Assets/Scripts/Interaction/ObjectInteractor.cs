@@ -11,6 +11,8 @@ public class ObjectInteractor : MonoBehaviour
     private List<GameObject> drawnPoints;
 
     private GameObject currentPoints;
+    private GameObject tempObj;
+    private bool rightHandfull = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,11 +36,30 @@ public class ObjectInteractor : MonoBehaviour
         {
             IInteractable selectable = hitInfo.collider.GetComponent<IInteractable>();
 
+            tempObj = hitInfo.collider.gameObject;
+
             currentPoints = selectable.PointParent;
 
-            if (UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - hitInfo.collider.transform.position.magnitude < 0.5f && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - hitInfo.collider.transform.position.magnitude > -0.5f) 
+        }
+
+        if (tempObj != null && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude < 0.5f && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude > -0.5f) 
+        {
+            tempObj.transform.SetParent(UnitManager.Instance.UnitsSelected[0].transform, true);
+
+            if (!rightHandfull)
             {
-                hitInfo.collider.transform.SetParent(UnitManager.Instance.UnitsSelected[0].transform, true);
+                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<RightHand>().transform.position;
+                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<RightHand>().RightHandObj.SetActive(false);
+                rightHandfull = true;
+                tempObj.layer = 0;
+                tempObj = null;
+            }
+            else
+            {
+                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<LeftHand>().transform.position;
+                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<LeftHand>().LeftHandObj.SetActive(false);
+                tempObj.layer = 0;
+                tempObj = null;
             }
         }
 
