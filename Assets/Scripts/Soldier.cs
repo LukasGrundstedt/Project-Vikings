@@ -23,23 +23,31 @@ public class Soldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
         Debug.DrawLine(transform.position, transform.position + transform.forward, Color.green);
         Debug.DrawLine(OffHand.transform.position, OffHand.transform.position + OffHand.transform.forward, Color.blue);
 
         if (Target == null) return;
+
+        Vector3 targetObjectPosition = new(Target.GetComponent<Soldier>().OffHand.transform.position.x, 0f, Target.GetComponent<Soldier>().OffHand.transform.position.z);
+        Vector3 ownPosition = new(transform.position.x, 0f, transform.position.z);
+
+        //Target Line
         Debug.DrawLine(transform.position, Target.transform.position, Color.red);
 
-        Debug.DrawLine(transform.position, Target.GetComponent<Soldier>().OffHand.transform.position, Color.yellow);
-        angle = Vector3.Angle(transform.position, Target.GetComponent<Soldier>().OffHand.transform.position);
+        //Angle Line
+        Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
+        angle = Mathf.Abs(Vector3.Angle(ownPosition, targetObjectPosition));
     }
 
     public void Attack(GameObject target)
     {
+
     }
 }

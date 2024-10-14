@@ -40,7 +40,7 @@ public class DestinationSetter : MonoBehaviour
             GameObject circle =
             Instantiate(
                 littleCircle,
-                new Vector3 (Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0f, Random.Range(-transform.localScale.z * 0.5f, transform.localScale.z * 0.5f)) + transform.position,
+                new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0f, Random.Range(-transform.localScale.z * 0.5f, transform.localScale.z * 0.5f)) + transform.position,
                 new Quaternion(0f, 0f, 0f, 0f),
                 transform
                 );
@@ -51,7 +51,7 @@ public class DestinationSetter : MonoBehaviour
         if (highlighter.CurrentHighlight != null)
         {
             GetComponent<SpriteRenderer>().enabled = false;
-            
+
             foreach (GameObject obj in objects)
             {
                 obj.SetActive(false);
@@ -70,16 +70,15 @@ public class DestinationSetter : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
-            
             for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
             {
                 if (highlighter.CurrentHighlight == null)
                 {
-                    UnitManager.Instance.UnitsSelected[i].GetComponent<NavMeshAgent>().destination = objects[i].transform.position;
+                    UnitManager.Instance.UnitsSelected[i].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
                 }
                 else
                 {
-                    UnitManager.Instance.UnitsSelected[0].GetComponent<NavMeshAgent>().destination = highlighter.CurrentHighlight.transform.position;
+                    UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
                 }
             }
 
@@ -89,6 +88,5 @@ public class DestinationSetter : MonoBehaviour
             }
             objects.Clear();
         }
-
     }
 }

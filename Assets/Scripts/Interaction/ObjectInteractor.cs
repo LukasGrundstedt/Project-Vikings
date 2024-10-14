@@ -12,7 +12,7 @@ public class ObjectInteractor : MonoBehaviour
 
     private GameObject currentPoints;
     private GameObject tempObj;
-    private bool rightHandfull = false;
+    private bool mainHandfull = false;
 
     // Start is called before the first frame update
     void Start()
@@ -39,25 +39,24 @@ public class ObjectInteractor : MonoBehaviour
             tempObj = hitInfo.collider.gameObject;
 
             currentPoints = selectable.PointParent;
-
         }
 
         if (tempObj != null && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude < 0.5f && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude > -0.5f) 
         {
             tempObj.transform.SetParent(UnitManager.Instance.UnitsSelected[0].transform, true);
 
-            if (!rightHandfull)
+            if (!mainHandfull)
             {
-                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<RightHand>().transform.position;
-                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<RightHand>().RightHandObj.SetActive(false);
-                rightHandfull = true;
+                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<MainHand>().transform.position;
+                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<MainHand>().MainHandObj.SetActive(false);
+                mainHandfull = true;
                 tempObj.layer = 0;
                 tempObj = null;
             }
             else
             {
-                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<LeftHand>().transform.position;
-                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<LeftHand>().LeftHandObj.SetActive(false);
+                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<OffHand>().transform.position;
+                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<OffHand>().OffHandObj.SetActive(false);
                 tempObj.layer = 0;
                 tempObj = null;
             }

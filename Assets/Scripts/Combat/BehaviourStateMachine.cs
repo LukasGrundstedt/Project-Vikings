@@ -2,17 +2,20 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 [RequireComponent(typeof(Entity))]
 public class BehaviourStateMachine : MonoBehaviour
 {
-    [SerializeField] private bool goFight = false;
-
     public State DefaultState { get; set; }
     public State CurrentState { get; set; }
     private Dictionary<State, Dictionary<Func<bool>, State>> states;
 
     private Entity entity;
+
+    public Vector3 Destination { get; set; } = Vector3.zero;
+    
+    [SerializeField] private ActionType actionType;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +26,28 @@ public class BehaviourStateMachine : MonoBehaviour
         State fightingState = new FightingState(entity);
         State attackState = new AttackState(entity);
         State blockState = new BlockState(entity);
+        State walkingState = new WalkingState(entity, Vector3.zero);
 
         states = new()
         {
             {
                 idleState, new()
                 {
-                    { () => goFight, fightingState }
+                    { () => actionType == ActionType.Attack, fightingState },
+                    { () => actionType == ActionType.Move, walkingState }
+                }
+            },
+            {
+                walkingState, new()
+                {
+                    { () => actionType == ActionType.Attack, fightingState },
+                    { () => actionType == ActionType.Idle, idleState },
                 }
             },
             {
                 fightingState, new()
                 {
-                    { () => !goFight, idleState }
+                    { () => actionType == ActionType.Move, walkingState }
                 }
             },
         };
@@ -62,5 +74,16 @@ public class BehaviourStateMachine : MonoBehaviour
         CurrentState.OnStateExit();
         CurrentState = nextState;
         CurrentState.OnStateEnter();
+    }
+
+
+    public void SetAction(ActionType actionType)
+    {
+        this.actionType = actionType;
+    }
+    public void SetAction(ActionType actionType, Vector3 destination)
+    {
+        this.actionType = actionType;
+        Destination = destination;
     }
 }
