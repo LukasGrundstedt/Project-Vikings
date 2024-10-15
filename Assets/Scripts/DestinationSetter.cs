@@ -70,15 +70,36 @@ public class DestinationSetter : MonoBehaviour
 
         if (Input.GetMouseButtonUp(1))
         {
+
+            // Enemy clicked
+            //if (hitInfo.collider.GetComponent<Soldier>())
+            //{
+
+            //}
+            //// Collectable clicked
+            //else if ()
+            //{
+
+            //}
+
+
+
+
             for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
             {
+                GameObject unit = UnitManager.Instance.UnitsSelected[i];
                 if (highlighter.CurrentHighlight == null)
                 {
-                    UnitManager.Instance.UnitsSelected[i].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
+                    unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
                 }
                 else
                 {
                     UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
+                }
+
+                if (hitInfo.collider.TryGetComponent<Soldier>(out Soldier target))
+                {
+                    unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, hitInfo.collider.gameObject);
                 }
             }
 
