@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class ObjectInteractor : MonoBehaviour
 {
-    [SerializeField] private LayerMask interactableMask;
     [SerializeField] private GameObject destinationPoint;
 
     private List<GameObject> drawnPoints;
@@ -31,9 +30,9 @@ public class ObjectInteractor : MonoBehaviour
 
         if (UnitManager.Instance.UnitsSelected.Count <= 0) return;
         
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, interactableMask))
+        if (MouseRaycast.CurrentHitType == HitType.Object)
         {
+            RaycastHit hitInfo = MouseRaycast.HitInfo;
             IInteractable selectable = hitInfo.collider.GetComponent<IInteractable>();
 
             tempObj = hitInfo.collider.gameObject;

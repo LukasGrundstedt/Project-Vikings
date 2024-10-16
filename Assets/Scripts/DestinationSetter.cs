@@ -26,88 +26,73 @@ public class DestinationSetter : MonoBehaviour
 
         transform.localScale = scale;
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        Physics.Raycast(ray, out RaycastHit hitInfo, 100f, plane);
-
-        circleVector = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.1f, hitInfo.point.z);
-
-        transform.position = circleVector;
-
-        if (objects.Count < UnitManager.Instance.UnitsSelected.Count)
+        if (MouseRaycast.CurrentHitType == HitType.Ground)
         {
+            RaycastHit hitInfo = MouseRaycast.HitInfo;
 
-            GameObject circle =
-            Instantiate(
-                littleCircle,
-                new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0f, Random.Range(-transform.localScale.z * 0.5f, transform.localScale.z * 0.5f)) + transform.position,
-                new Quaternion(0f, 0f, 0f, 0f),
-                transform
-                );
+            circleVector = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.1f, hitInfo.point.z);
+            transform.position = circleVector;
 
-            objects.Add(circle);
-        }
-
-        if (highlighter.CurrentHighlight != null)
-        {
-            GetComponent<SpriteRenderer>().enabled = false;
-
-            foreach (GameObject obj in objects)
+            if (objects.Count < UnitManager.Instance.UnitsSelected.Count)
             {
-                obj.SetActive(false);
+
+                GameObject circle =
+                Instantiate(
+                    littleCircle,
+                    new Vector3(Random.Range(-transform.localScale.x * 0.5f, transform.localScale.x * 0.5f), 0f, Random.Range(-transform.localScale.z * 0.5f, transform.localScale.z * 0.5f)) + transform.position,
+                    new Quaternion(0f, 0f, 0f, 0f),
+                    transform
+                    );
+
+                objects.Add(circle);
             }
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().enabled = true;
 
-            foreach (GameObject obj in objects)
+            if (highlighter.CurrentHighlight != null)
             {
-                obj.SetActive(true);
+                GetComponent<SpriteRenderer>().enabled = false;
+
+                foreach (GameObject obj in objects)
+                {
+                    obj.SetActive(false);
+                }
             }
-        }
-
-
-        if (Input.GetMouseButtonUp(1))
-        {
-
-            // Enemy clicked
-            //if (hitInfo.collider.GetComponent<Soldier>())
-            //{
-
-            //}
-            //// Collectable clicked
-            //else if ()
-            //{
-
-            //}
-
-
-
-
-            for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
+            else
             {
-                GameObject unit = UnitManager.Instance.UnitsSelected[i];
-                if (highlighter.CurrentHighlight == null)
-                {
-                    unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
-                }
-                else
-                {
-                    UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
-                }
+                GetComponent<SpriteRenderer>().enabled = true;
 
-                if (hitInfo.collider.TryGetComponent<Soldier>(out Soldier target))
+                foreach (GameObject obj in objects)
                 {
-                    unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, hitInfo.collider.gameObject);
+                    obj.SetActive(true);
                 }
             }
 
-            foreach (var dings in objects)
+
+            if (Input.GetMouseButtonUp(1))
             {
-                Destroy(dings.gameObject);
+                for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
+                {
+                    GameObject unit = UnitManager.Instance.UnitsSelected[i];
+                    if (highlighter.CurrentHighlight == null)
+                    {
+                        unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
+                    }
+                    else
+                    {
+                        UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
+                    }
+
+                    if (hitInfo.collider.TryGetComponent<Soldier>(out Soldier target))
+                    {
+                        unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, hitInfo.collider.gameObject);
+                    }
+                }
+
+                foreach (var dings in objects)
+                {
+                    Destroy(dings.gameObject);
+                }
+                objects.Clear();
             }
-            objects.Clear();
         }
     }
 }
