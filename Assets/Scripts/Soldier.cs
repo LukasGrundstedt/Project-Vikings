@@ -29,7 +29,16 @@ public class Soldier : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        DebugLines();
+    }
 
+    public void Attack(GameObject target)
+    {
+
+    }
+
+    private void DebugLines()
+    {
         Debug.DrawLine(transform.position, transform.position + transform.forward, Color.green);
         Debug.DrawLine(OffHand.transform.position, OffHand.transform.position + OffHand.transform.forward, Color.blue);
 
@@ -44,10 +53,5 @@ public class Soldier : MonoBehaviour
         //Angle Line
         Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
         angle = Mathf.Abs(Vector3.Angle(ownPosition, targetObjectPosition));
-    }
-
-    public void Attack(GameObject target)
-    {
-
     }
 }

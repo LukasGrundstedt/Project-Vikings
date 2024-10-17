@@ -17,13 +17,13 @@ public class UnitManager : MonoBehaviour
     }
 
 
-
     #region Selection
     public void ClickSelect(GameObject unitToAdd)
     {
         DeselectAll();
         UnitsSelected.Add(unitToAdd);
         Highlight(unitToAdd, true);
+        unitToAdd.GetComponent<ISelectable>().Selected = true;
     }
 
     public void ShiftClickSelect(GameObject unitToAdd)
@@ -32,6 +32,7 @@ public class UnitManager : MonoBehaviour
         {
             UnitsSelected.Add(unitToAdd);
             Highlight(unitToAdd, true);
+            unitToAdd.GetComponent<ISelectable>().Selected = true;
         }
         else
         {
@@ -46,6 +47,7 @@ public class UnitManager : MonoBehaviour
         {
             UnitsSelected.Add(unitToAdd);
             Highlight(unitToAdd, true);
+            unitToAdd.GetComponent<ISelectable>().Selected = true;
         }
     }
 
@@ -54,14 +56,10 @@ public class UnitManager : MonoBehaviour
         foreach (GameObject unitToRemove in UnitsSelected)
         {
             Highlight(unitToRemove, false);
+            unitToRemove.GetComponent<ISelectable>().Selected = false;
         }
 
         UnitsSelected.Clear();
-    }
-
-    public void Deselect(GameObject unitToDeselct)
-    {
-
     }
 
     private void Highlight(GameObject obj, bool b)

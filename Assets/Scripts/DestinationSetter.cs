@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class DestinationSetter : MonoBehaviour
 {
@@ -26,16 +24,16 @@ public class DestinationSetter : MonoBehaviour
 
         transform.localScale = scale;
 
+        RaycastHit hitInfo = MouseRaycast.HitInfo;
+
         if (MouseRaycast.CurrentHitType == HitType.Ground)
         {
-            RaycastHit hitInfo = MouseRaycast.HitInfo;
 
             circleVector = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.1f, hitInfo.point.z);
             transform.position = circleVector;
 
             if (objects.Count < UnitManager.Instance.UnitsSelected.Count)
             {
-
                 GameObject circle =
                 Instantiate(
                     littleCircle,
@@ -46,53 +44,58 @@ public class DestinationSetter : MonoBehaviour
 
                 objects.Add(circle);
             }
+        }
 
-            if (highlighter.CurrentHighlight != null)
+        if (highlighter.CurrentHighlight != null)
+        {
+            GetComponent<SpriteRenderer>().enabled = false;
+
+            foreach (GameObject obj in objects)
             {
-                GetComponent<SpriteRenderer>().enabled = false;
-
-                foreach (GameObject obj in objects)
-                {
-                    obj.SetActive(false);
-                }
+                obj.SetActive(false);
             }
-            else
-            {
-                GetComponent<SpriteRenderer>().enabled = true;
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
 
-                foreach (GameObject obj in objects)
-                {
-                    obj.SetActive(true);
-                }
+            foreach (GameObject obj in objects)
+            {
+                obj.SetActive(true);
             }
+        }
 
 
-            if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
+        {
+            for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
             {
-                for (int i = 0; i < UnitManager.Instance.UnitsSelected.Count; i++)
+                GameObject unit = UnitManager.Instance.UnitsSelected[i];
+
+                switch (MouseRaycast.CurrentHitType)
                 {
-                    GameObject unit = UnitManager.Instance.UnitsSelected[i];
-                    if (highlighter.CurrentHighlight == null)
-                    {
+                    case HitType.Ground:
+                        //Go to location
                         unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, objects[i].transform.position);
-                    }
-                    else
-                    {
+                        break;
+
+                    case HitType.Object:
+                        //Collect Item
                         UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
-                    }
+                        break;
 
-                    if (hitInfo.collider.TryGetComponent<Soldier>(out Soldier target))
-                    {
+                    case HitType.Unit:
+                        //Attack Unit
                         unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, hitInfo.collider.gameObject);
-                    }
+                        break;
                 }
-
-                foreach (var dings in objects)
-                {
-                    Destroy(dings.gameObject);
-                }
-                objects.Clear();
             }
+
+            foreach (var dings in objects)
+            {
+                Destroy(dings.gameObject);
+            }
+            objects.Clear();
         }
     }
 }

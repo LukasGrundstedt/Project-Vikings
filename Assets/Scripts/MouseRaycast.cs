@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
 using UnityEngine;
 
 public class MouseRaycast : MonoBehaviour
 {
     [SerializeField] private LayerMask rayCastable;
 
-    public static HitType CurrentHitType { get; private set; }
+    public static HitType CurrentHitType { get; set; }
 
     private static RaycastHit hitInfo;
     public static RaycastHit HitInfo { get => hitInfo; private set => hitInfo = value; }
@@ -47,6 +46,7 @@ public class MouseRaycast : MonoBehaviour
         }
         else
         {
+            //Acts as a null alternative
             CurrentHitType = HitType.None;
         }
     }

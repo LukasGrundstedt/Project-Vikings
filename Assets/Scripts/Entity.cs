@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class Entity : MonoBehaviour, ISelectable
 {
     [field: SerializeField]
+    public bool Selected { get; set; }
+
+    [field: SerializeField]
     public GameObject SelectVisual { get; set; }
 
     [field: SerializeField]

@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Highlighter : MonoBehaviour
 {
-    [Tooltip("Choose 'Interactable', since it derives from IHighlightable")]
-    [SerializeField] private LayerMask highlightMask;
-
     private GameObject currentHighlight;
+
+    private RaycastHit hitInfo;
 
     public GameObject CurrentHighlight { get => currentHighlight; }
 
@@ -20,18 +19,29 @@ public class Highlighter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // DeHighlight Objects
         if (currentHighlight != null && currentHighlight.activeInHierarchy)
         {
-            currentHighlight.SetActive(false);
+            bool isSelected = false;
+
+            if (hitInfo.collider.TryGetComponent<ISelectable>(out ISelectable selectable))
+            {
+                isSelected = selectable.Selected;
+            }
+
+            currentHighlight.SetActive(isSelected);
             currentHighlight = null;
         }
 
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 100f, highlightMask))
+        // Get Highlightable Objects
+        if (MouseRaycast.CurrentHitType == HitType.Unit || MouseRaycast.CurrentHitType == HitType.Object)
         {
+            hitInfo = MouseRaycast.HitInfo;
+
             currentHighlight = hitInfo.collider.GetComponent<IHighlightable>().SelectVisual;
         }
 
+        // Highlight Object
         if (currentHighlight != null && !currentHighlight.activeInHierarchy) currentHighlight.SetActive(true);
     }
 }
