@@ -42,7 +42,7 @@ public class MouseRaycast : MonoBehaviour
                 case 7: //Selectable id
                     CurrentHitType = HitType.Unit;
                     break;
-                case 8: //Atackable id
+                case 8: //Attackable id
                     CurrentHitType = HitType.Enemy;
                     break;
             }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,8 +11,8 @@ public class ObjectInteractor : MonoBehaviour
     private List<GameObject> drawnPoints;
 
     private GameObject currentPoints;
-    private GameObject tempObj;
-    private bool mainHandfull = false;
+    private GameObject tempObj = null;
+    private GameObject tempUnit = null;
 
     // Start is called before the first frame update
     void Start()
@@ -28,39 +29,71 @@ public class ObjectInteractor : MonoBehaviour
             currentPoints = null;
         }
 
-        if (UnitManager.Instance.UnitsSelected.Count <= 0) return;
         
         if (MouseRaycast.CurrentHitType == HitType.Object)
         {
             RaycastHit hitInfo = MouseRaycast.HitInfo;
             IInteractable selectable = hitInfo.collider.GetComponent<IInteractable>();
 
-            tempObj = hitInfo.collider.gameObject;
+            if (Input.GetMouseButtonUp(1)) 
+            { 
+                tempObj = hitInfo.collider.gameObject;
+                tempUnit = UnitManager.Instance.UnitsSelected[0];
+            }
 
             currentPoints = selectable.PointParent;
         }
 
-        if (tempObj != null && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude < 0.5f && UnitManager.Instance.UnitsSelected[0].transform.position.magnitude - tempObj.transform.position.magnitude > -0.5f) 
-        {
-            tempObj.transform.SetParent(UnitManager.Instance.UnitsSelected[0].transform, true);
+        if (tempUnit == null) return;
 
-            if (!mainHandfull)
-            {
-                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<MainHand>().transform.position;
-                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<MainHand>().MainHandObj.SetActive(false);
-                mainHandfull = true;
-                tempObj.layer = 0;
-                tempObj = null;
-            }
-            else
-            {
-                tempObj.transform.position = UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<OffHand>().transform.position;
-                UnitManager.Instance.UnitsSelected[0].GetComponentInChildren<OffHand>().OffHandObj.SetActive(false);
-                tempObj.layer = 0;
-                tempObj = null;
-            }
+        Debug.Log(tempObj);
+        Debug.Log(tempUnit);
+
+        if (tempObj != null && tempUnit != null)
+        {
+            Debug.Log(Vector3.Distance(tempUnit.transform.position, tempObj.transform.position));
         }
 
+        if (tempObj != null && CompareDistance(tempUnit.transform.position, tempObj.transform.position) < 0.5f) 
+        {
+            Debug.Log("macht er");
+
+            tempObj.transform.SetParent(tempUnit.transform, true);
+
+            if (!tempUnit.GetComponentInChildren<MainHand>(true).MainHandFull)
+            {
+                tempObj.transform.position = tempUnit.GetComponentInChildren<MainHand>().transform.position;
+                tempUnit.GetComponentInChildren<MainHand>().MainHandObj.SetActive(false);
+                tempUnit.GetComponent<Unit>().CarriedMainObj = tempObj;
+                tempUnit.GetComponentInChildren<MainHand>(true).MainHandFull = true;
+                tempObj.layer = 0;
+                tempObj = null;
+                tempUnit = null;
+            }
+            else if (!tempUnit.GetComponentInChildren<OffHand>(true).OffHandFull)
+            {
+                tempObj.transform.position = tempUnit.GetComponentInChildren<OffHand>(true).transform.position;
+                tempUnit.GetComponentInChildren<OffHand>(true).OffHandObj.SetActive(false);
+                tempUnit.GetComponent<Unit>().CarriedOffObj = tempObj;
+                tempUnit.GetComponentInChildren<OffHand>(true).OffHandFull = true;
+                tempObj.layer = 0;
+                tempObj = null;
+                tempUnit = null;
+            }
+
+
+        }
+
+
+
         if (currentPoints != null && !currentPoints.activeInHierarchy) currentPoints.SetActive(true);
+    }
+
+    private float CompareDistance(Vector3 a, Vector3 b)
+    {
+        Vector2 aInVec2 = new Vector2(a.x, a.z);
+        Vector2 bInVec2 = new Vector2(b.x, b.z);
+
+        return Vector2.Distance(aInVec2, bInVec2);
     }
 }
