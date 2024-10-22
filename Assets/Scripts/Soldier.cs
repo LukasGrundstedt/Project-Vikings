@@ -5,11 +5,13 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Soldier : MonoBehaviour
 {
+    [SerializeField] private int maxHp = 100;
     [SerializeField] private int hp = 100;
     [SerializeField] private int dmg = 10;
 
     [SerializeField] private float angle;
 
+    [SerializeField] private Healthbar healthBar;
 
     [field: SerializeField]
     public GameObject MainHand { get; set; }
@@ -32,9 +34,15 @@ public class Soldier : MonoBehaviour
         DebugLines();
     }
 
-    public void Attack(GameObject target)
+    public void Attack(Soldier target)
     {
+        target.TakeDamage(dmg);
+    }
 
+    public void TakeDamage(int value)
+    {
+        hp = Mathf.Clamp(hp - value, 0, hp);
+        healthBar.UpdateHealthBar(hp, maxHp);
     }
 
     private void DebugLines()

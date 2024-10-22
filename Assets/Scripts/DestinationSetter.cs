@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class DestinationSetter : MonoBehaviour
 {
-    [SerializeField] private LayerMask plane;
     [SerializeField] private GameObject littleCircle;
     private Vector3 scale;
     private Vector3 circleVector;
@@ -85,7 +84,12 @@ public class DestinationSetter : MonoBehaviour
                         break;
 
                     case HitType.Unit:
-                        //Attack Unit
+                        //Move to Ally location
+                        unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, hitInfo.transform.position);
+                        break;
+
+                    case HitType.Enemy:
+                        //Attack Enemy
                         unit.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, hitInfo.collider.gameObject);
                         break;
                 }

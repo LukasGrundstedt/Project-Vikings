@@ -5,6 +5,7 @@ using UnityEngine;
 public class FightingState : State
 {
     private GameObject target;
+    private Soldier targetSoldier;
 
     public FightingState(Entity entity) : base(entity)
     {
@@ -14,11 +15,13 @@ public class FightingState : State
     public override void OnStateEnter()
     {
         target = entity.GetComponent<Soldier>().Target;
+        targetSoldier = target.GetComponent<Soldier>();
     }
 
     public override void OnStateUpdate()
     {
-        FaceOpponent();
+        FaceOpponent(target);
+        Attack(targetSoldier);
     }
 
     public override void OnStateExit()
@@ -26,8 +29,13 @@ public class FightingState : State
 
     }
 
-    private void FaceOpponent()
+    private void FaceOpponent(GameObject opponent)
     {
-        entity.EntityAgent.destination = target.transform.position - entity.transform.forward * 2;
+        entity.EntityAgent.destination = opponent.transform.position - entity.transform.forward * 2;
+    }
+
+    private void Attack(Soldier target)
+    {
+        entity.SoldierStats.Attack(target);
     }
 }

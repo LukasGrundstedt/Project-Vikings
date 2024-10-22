@@ -34,8 +34,9 @@ public class UnitManager : MonoBehaviour
             Highlight(unitToAdd, true);
             unitToAdd.GetComponent<ISelectable>().Selected = true;
         }
-        else
+        else // This is throwing errors
         {
+            unitToAdd.GetComponent<ISelectable>().Selected = false;
             UnitsSelected.Remove(unitToAdd);
             Highlight(unitToAdd, false);
         }

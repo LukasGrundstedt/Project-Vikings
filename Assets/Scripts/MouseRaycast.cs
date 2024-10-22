@@ -15,7 +15,7 @@ public class MouseRaycast : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(rayCastable.value);   
+
     }
 
     // Update is called once per frame
@@ -33,14 +33,17 @@ public class MouseRaycast : MonoBehaviour
 
             switch (layer)
             {
-                case 3:
+                case 3: //Ground id
                     CurrentHitType = HitType.Ground;
                     break;
-                case 6:
+                case 6: //Interactable id
                     CurrentHitType = HitType.Object;
                     break;
-                case 7:
+                case 7: //Selectable id
                     CurrentHitType = HitType.Unit;
+                    break;
+                case 8: //Atackable id
+                    CurrentHitType = HitType.Enemy;
                     break;
             }
         }

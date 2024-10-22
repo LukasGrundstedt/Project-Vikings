@@ -34,7 +34,7 @@ public class Highlighter : MonoBehaviour
         }
 
         // Get Highlightable Objects
-        if (MouseRaycast.CurrentHitType == HitType.Unit || MouseRaycast.CurrentHitType == HitType.Object)
+        if (MouseRaycast.CurrentHitType == HitType.Unit || MouseRaycast.CurrentHitType == HitType.Enemy || MouseRaycast.CurrentHitType == HitType.Object)
         {
             hitInfo = MouseRaycast.HitInfo;
 
@@ -42,6 +42,28 @@ public class Highlighter : MonoBehaviour
         }
 
         // Highlight Object
-        if (currentHighlight != null && !currentHighlight.activeInHierarchy) currentHighlight.SetActive(true);
+        if (currentHighlight != null && !currentHighlight.activeInHierarchy)
+        {
+            switch (MouseRaycast.CurrentHitType)
+            {
+                case HitType.Unit:
+                    Highlight(Color.white);
+                    break;
+
+                case HitType.Enemy:
+                    Highlight(Color.red);
+                    break;
+
+                default:
+                    Highlight(Color.white); 
+                    break;
+            }
+        }
+    }
+
+    private void Highlight(Color highlightColor)
+    {
+        currentHighlight.SetActive(true);
+        currentHighlight.GetComponent<MeshRenderer>().material.color = highlightColor;
     }
 }

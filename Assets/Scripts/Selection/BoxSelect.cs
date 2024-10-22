@@ -26,8 +26,6 @@ public class BoxSelect : MonoBehaviour
 
     [SerializeField] private GameObject debugSphere;
 
-    private float zHeight = 10f;
-
     // Start is called before the first frame update
     void Start()
     {
