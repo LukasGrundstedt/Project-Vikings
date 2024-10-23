@@ -8,6 +8,9 @@ public class Soldier : MonoBehaviour
     [SerializeField] private int maxHp = 100;
     [SerializeField] private int hp = 100;
     [SerializeField] private int dmg = 10;
+    [SerializeField] private float attackSpeed = 1f;
+    public float AttackCooldown { get; private set; }
+    public float AttackRange { get; private set; } = 2f;
 
     [SerializeField] private float angle;
 
@@ -32,17 +35,36 @@ public class Soldier : MonoBehaviour
     void Update()
     {
         DebugLines();
+
+        if (AttackCooldown <= 0f) return;
+        AttackCooldown = Mathf.Max(AttackCooldown - Time.deltaTime, 0f);
     }
 
     public void Attack(Soldier target)
     {
-        target.TakeDamage(dmg);
+        if (SuccessfulAttack())
+        {
+            target.TakeDamage(dmg);
+        }
+        AttackCooldown = 1f / attackSpeed;
+
+        PlayAttackSound();
+    }
+
+    private bool SuccessfulAttack()
+    {
+        return true;
     }
 
     public void TakeDamage(int value)
     {
         hp = Mathf.Clamp(hp - value, 0, hp);
         healthBar.UpdateHealthBar(hp, maxHp);
+    }
+
+    private void PlayAttackSound()
+    {
+
     }
 
     private void DebugLines()

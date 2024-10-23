@@ -21,6 +21,9 @@ public class FightingState : State
     public override void OnStateUpdate()
     {
         FaceOpponent(target);
+
+        if (Vector3Extension.CompareDistance(entity.transform.position, target.transform.position) > entity.SoldierStats.AttackRange) return;
+        if (entity.SoldierStats.AttackCooldown > 0f) return;
         Attack(targetSoldier);
     }
 

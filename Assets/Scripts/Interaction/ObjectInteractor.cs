@@ -54,7 +54,7 @@ public class ObjectInteractor : MonoBehaviour
             Debug.Log(Vector3.Distance(tempUnit.transform.position, tempObj.transform.position));
         }
 
-        if (tempObj != null && CompareDistance(tempUnit.transform.position, tempObj.transform.position) < 0.5f) 
+        if (tempObj != null && Vector3Extension.CompareDistance(tempUnit.transform.position, tempObj.transform.position) < 0.5f) 
         {
             Debug.Log("macht er");
 
@@ -80,20 +80,8 @@ public class ObjectInteractor : MonoBehaviour
                 tempObj = null;
                 tempUnit = null;
             }
-
-
         }
 
-
-
         if (currentPoints != null && !currentPoints.activeInHierarchy) currentPoints.SetActive(true);
-    }
-
-    private float CompareDistance(Vector3 a, Vector3 b)
-    {
-        Vector2 aInVec2 = new Vector2(a.x, a.z);
-        Vector2 bInVec2 = new Vector2(b.x, b.z);
-
-        return Vector2.Distance(aInVec2, bInVec2);
     }
 }

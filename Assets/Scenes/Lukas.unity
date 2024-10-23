@@ -464,6 +464,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!1 &969763577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4336003537697053941, guid: f0c67490e32d9764d8992b2ae53156b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 6198294739609716772}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1062121028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -637,7 +643,7 @@ PrefabInstance:
         type: 3}
       propertyPath: <Target>k__BackingField
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 969763577}
     - target: {fileID: 3775050008295566583, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -997,6 +1003,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1538111827664812565, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1538111827664812565, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4ae1453b795f93e4b9539ad0c5e51b29, type: 2}
+    - target: {fileID: 4500716776366847043, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365324411758803763, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365324411758803763, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 963798294112862009, guid: 381dad6902b04404f8f0758c3a9a8326,
+        type: 3}
+    - target: {fileID: 6877878285535421064, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7213301820898304204, guid: 646c1b33a6d5dba41ba52aaea336569e,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7228599811390302778, guid: 646c1b33a6d5dba41ba52aaea336569e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1421,10 +1463,20 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2179530293732719303, guid: f0c67490e32d9764d8992b2ae53156b2,
+        type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179530293732719303, guid: f0c67490e32d9764d8992b2ae53156b2,
+        type: 3}
+      propertyPath: maxHp
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4336003537697053941, guid: f0c67490e32d9764d8992b2ae53156b2,
         type: 3}
       propertyPath: m_Name
-      value: Unit
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 5250989445099350658, guid: f0c67490e32d9764d8992b2ae53156b2,
         type: 3}

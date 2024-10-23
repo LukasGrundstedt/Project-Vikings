@@ -16,16 +16,4 @@ public class Entity : MonoBehaviour, ISelectable
 
     [field: SerializeField]
     public Soldier SoldierStats { get; set; }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
