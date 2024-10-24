@@ -53,6 +53,9 @@ public class Soldier : MonoBehaviour
 
     private bool SuccessfulAttack()
     {
+
+
+
         return true;
     }
 
@@ -71,7 +74,7 @@ public class Soldier : MonoBehaviour
     {
         Debug.DrawLine(transform.position, transform.position + transform.forward, Color.green);
         Debug.DrawLine(OffHand.transform.position, OffHand.transform.position + OffHand.transform.forward, Color.blue);
-
+        
         if (Target == null) return;
 
         Vector3 targetObjectPosition = new(Target.GetComponent<Soldier>().OffHand.transform.position.x, 0f, Target.GetComponent<Soldier>().OffHand.transform.position.z);
@@ -82,6 +85,6 @@ public class Soldier : MonoBehaviour
 
         //Angle Line
         Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
-        angle = Mathf.Abs(Vector3.Angle(ownPosition, targetObjectPosition));
+        angle = (Vector3.Angle(ownPosition, targetObjectPosition));
     }
 }
