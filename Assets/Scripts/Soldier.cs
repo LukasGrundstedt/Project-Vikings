@@ -21,6 +21,8 @@ public class Soldier : MonoBehaviour
 
     [SerializeField] private Healthbar healthBar;
 
+    [SerializeField] private Animator swordAnimator;
+
     [field: SerializeField]
     public GameObject MainHand { get; set; }
 
@@ -54,6 +56,13 @@ public class Soldier : MonoBehaviour
 
     public void Attack(Soldier target)
     {
+        int random = Random.Range(1, 4);
+
+        if (random == 1) swordAnimator.SetTrigger("Stab");
+        if (random == 2) swordAnimator.SetTrigger("Slash1");
+        if (random == 3) swordAnimator.SetTrigger("Slash2");
+
+
         if (SuccessfulAttack())
         {
             target.TakeDamage(dmg);
@@ -61,6 +70,8 @@ public class Soldier : MonoBehaviour
         AttackCooldown = 1f / attackSpeed;
 
         PlayAttackSound();
+
+
     }
 
     private bool SuccessfulAttack()

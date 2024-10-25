@@ -25,14 +25,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155448628485988014}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.3223483, z: 0, w: 0.9466212}
+  m_LocalRotation: {x: -0, y: -0.32090482, z: -0, w: 0.9471115}
   m_LocalPosition: {x: -0.64, y: -0.1, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 996701944571400697}
   m_Father: {fileID: 7030162896892649174}
-  m_LocalEulerAnglesHint: {x: 0, y: -37.61, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -37.435, z: 0}
 --- !u!114 &6302104330997304785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +186,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   hp: 100
+  attack: 10
   dmg: 10
+  attackSpeed: 1
+  defense: 10
+  armor: 10
   angle: 0
   healthBar: {fileID: 7583927151628080890}
+  swordAnimator: {fileID: 0}
   <MainHand>k__BackingField: {fileID: 6285263334184714948}
   <OffHand>k__BackingField: {fileID: 1155448628485988014}
   <Target>k__BackingField: {fileID: 0}

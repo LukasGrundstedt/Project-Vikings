@@ -240,12 +240,10 @@ MonoBehaviour:
   armor: 10
   angle: 0
   healthBar: {fileID: 5054728054577949004}
+  swordAnimator: {fileID: 7923243062371513180}
   <MainHand>k__BackingField: {fileID: 7102793609232060933}
   <OffHand>k__BackingField: {fileID: 8715471213486993865}
   <Target>k__BackingField: {fileID: 0}
-  shieldLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!114 &7093240526483828598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -549,8 +547,39 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5201321382753559947, guid: f1e5ca7cf306a1c41874d84c6496a625,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7923243062371513180}
   m_SourcePrefab: {fileID: 100100000, guid: f1e5ca7cf306a1c41874d84c6496a625, type: 3}
+--- !u!1 &8135089333823233214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5201321382753559947, guid: f1e5ca7cf306a1c41874d84c6496a625,
+    type: 3}
+  m_PrefabInstance: {fileID: 4092481890201712949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7923243062371513180
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135089333823233214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b662078ad44126246a9382cf3f8c8e2c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &8912188296162575876 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4856321385588014897, guid: f1e5ca7cf306a1c41874d84c6496a625,
