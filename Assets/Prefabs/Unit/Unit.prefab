@@ -233,12 +233,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   hp: 100
+  attack: 10
   dmg: 10
+  attackSpeed: 1
+  defense: 10
+  armor: 10
   angle: 0
   healthBar: {fileID: 5054728054577949004}
   <MainHand>k__BackingField: {fileID: 7102793609232060933}
   <OffHand>k__BackingField: {fileID: 8715471213486993865}
   <Target>k__BackingField: {fileID: 0}
+  shieldLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!114 &7093240526483828598
 MonoBehaviour:
   m_ObjectHideFlags: 0

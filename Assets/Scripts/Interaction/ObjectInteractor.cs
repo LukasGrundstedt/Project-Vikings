@@ -54,7 +54,7 @@ public class ObjectInteractor : MonoBehaviour
             Debug.Log(Vector3.Distance(tempUnit.transform.position, tempObj.transform.position));
         }
 
-        if (tempObj != null && Vector3Extension.CompareDistance(tempUnit.transform.position, tempObj.transform.position) < 0.5f) 
+        if (tempObj != null && tempUnit.transform.position.CompareDistance(tempObj.transform.position) < 0.5f) 
         {
             Debug.Log("macht er");
 

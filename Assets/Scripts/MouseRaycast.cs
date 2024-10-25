@@ -31,18 +31,18 @@ public class MouseRaycast : MonoBehaviour
         {
             int layer = hitInfo.collider.gameObject.layer;
 
-            switch (layer)
+            switch ((Layer)layer)
             {
-                case 3: //Ground id
+                case Layer.Ground:
                     CurrentHitType = HitType.Ground;
                     break;
-                case 6: //Interactable id
+                case Layer.Interactable:
                     CurrentHitType = HitType.Object;
                     break;
-                case 7: //Selectable id
+                case Layer.Selectable:
                     CurrentHitType = HitType.Unit;
                     break;
-                case 8: //Attackable id
+                case Layer.Attackable:
                     CurrentHitType = HitType.Enemy;
                     break;
             }

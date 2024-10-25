@@ -32,7 +32,7 @@ public class Unit : Entity
     private void DropAnyObject(GameObject obj)
     {
         obj.transform.SetParent(null, true);
-        obj.layer = 6; //Interactable id
+        obj.layer = (int)Layer.Interactable;
         obj.transform.position = new Vector3(obj.transform.position.x, 0, obj.transform.position.z);
 
         if (mainhand.MainHandObj.activeInHierarchy == false)
