@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 [ExecuteInEditMode]
 public class Soldier : MonoBehaviour
@@ -25,12 +26,13 @@ public class Soldier : MonoBehaviour
 
     [field: SerializeField]
     public GameObject MainHand { get; set; }
+    private Sword sword;
 
     [field: SerializeField]
     public GameObject OffHand { get; set; }
 
     [field: SerializeField]
-    public GameObject Target { get; set; }
+    public Soldier Target { get; set; }
 
     private enum AttackSuccess
     {
@@ -42,7 +44,6 @@ public class Soldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -54,24 +55,32 @@ public class Soldier : MonoBehaviour
         AttackCooldown = Mathf.Max(AttackCooldown - Time.deltaTime, 0f);
     }
 
-    public void Attack(Soldier target)
+    public void Attack()
     {
-        int random = Random.Range(1, 4);
+        int animationIndex = Random.Range(1, 4);
+        switch (animationIndex)
+        {
+            case 1:
+                swordAnimator.SetTrigger("Stab");
+                break;
+            case 2:
+                swordAnimator.SetTrigger("Slash1");
+                break;
+            case 3:
+                swordAnimator.SetTrigger("Slash2");
+                break;
+        }
+        swordAnimator.SetTrigger("Slash2");
 
-        if (random == 1) swordAnimator.SetTrigger("Stab");
-        if (random == 2) swordAnimator.SetTrigger("Slash1");
-        if (random == 3) swordAnimator.SetTrigger("Slash2");
+        AttackCooldown = 1f / attackSpeed;
+    }
 
-
+    private void ResolveAttack()
+    {
         if (SuccessfulAttack())
         {
-            target.TakeDamage(dmg);
+            Target.TakeDamage(dmg);
         }
-        AttackCooldown = 1f / attackSpeed;
-
-        PlayAttackSound();
-
-
     }
 
     private bool SuccessfulAttack()
@@ -84,7 +93,7 @@ public class Soldier : MonoBehaviour
                 return true;
 
             case AttackSuccess.Intercepted:
-                return TryBreakDefense(Target.GetComponent<Soldier>());
+                return TryBreakDefense(Target);
 
             case AttackSuccess.None:
                 return false;
@@ -124,7 +133,7 @@ public class Soldier : MonoBehaviour
         int probability = Random.Range(1, 11);
 
         bool outcome = advantage >= probability;
-        Debug.Log($"{advantage} + {probability}");
+        Debug.Log($"advantage: {advantage} probability: {probability}");
 
         return outcome;
     }
@@ -135,11 +144,6 @@ public class Soldier : MonoBehaviour
         healthBar.UpdateHealthBar(hp, maxHp);
     }
 
-    private void PlayAttackSound()
-    {
-
-    }
-
     private void DebugLines()
     {
         Debug.DrawLine(transform.position, transform.position + transform.forward, Color.green);
@@ -147,7 +151,7 @@ public class Soldier : MonoBehaviour
         
         if (Target == null) return;
 
-        Vector3 targetObjectPosition = Target.GetComponent<Soldier>().OffHand.transform.position/* + Target.GetComponent<Soldier>().OffHand.transform.forward*/;
+        Vector3 targetObjectPosition = Target.OffHand.transform.position/* + Target.OffHand.transform.forward*/;
         targetObjectPosition.y = 0f;
         Vector3 ownPosition = new(transform.position.x, 0f, transform.position.z);
 
@@ -157,5 +161,16 @@ public class Soldier : MonoBehaviour
         //Angle Line
         Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
         angle = (Vector3.Angle(ownPosition - targetObjectPosition, transform.forward));
+    }
+
+    private void OnEnable()
+    {
+        sword = MainHand.GetComponentInChildren<Sword>();
+        sword.OnImpact += ResolveAttack;
+    }
+
+    private void OnDisable()
+    {
+        sword.OnImpact -= ResolveAttack;
     }
 }

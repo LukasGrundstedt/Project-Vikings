@@ -88,6 +88,6 @@ public class BehaviourStateMachine : MonoBehaviour
     public void SetAction(ActionType actionType, GameObject target)
     {
         this.actionType = actionType;
-        GetComponent<Soldier>().Target = target;
+        GetComponent<Soldier>().Target = target.GetComponent<Soldier>();
     }
 }
