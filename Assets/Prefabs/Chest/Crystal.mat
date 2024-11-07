@@ -39,14 +39,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _EmissionStrength: 1
-    - _Metallic: 0.519
+    - _Metallic: 0.599
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Smoothness: 0.916
+    - _Smoothness: 0.965
     - _Transparency: 1
     m_Colors:
     - _Color: {r: 1, g: 0.65880984, b: 0, a: 0}
-    - _EmissionColor: {r: 2, g: 1.0789593, b: 0, a: 0}
+    - _EmissionColor: {r: 1.9999999, g: 1.0789592, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &8149162059191478975
 MonoBehaviour:

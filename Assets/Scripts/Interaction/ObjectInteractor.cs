@@ -49,15 +49,8 @@ public class ObjectInteractor : MonoBehaviour
         Debug.Log(tempObj);
         Debug.Log(tempUnit);
 
-        if (tempObj != null && tempUnit != null)
-        {
-            Debug.Log(Vector3.Distance(tempUnit.transform.position, tempObj.transform.position));
-        }
-
         if (tempObj != null && tempUnit.transform.position.CompareDistance(tempObj.transform.position) < 0.5f) 
         {
-            Debug.Log("macht er");
-
             tempObj.transform.SetParent(tempUnit.transform, true);
 
             if (!tempUnit.GetComponentInChildren<MainHand>(true).MainHandFull)
