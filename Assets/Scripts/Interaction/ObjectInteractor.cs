@@ -46,9 +46,6 @@ public class ObjectInteractor : MonoBehaviour
 
         if (tempUnit == null) return;
 
-        Debug.Log(tempObj);
-        Debug.Log(tempUnit);
-
         if (tempObj != null && tempUnit.transform.position.CompareDistance(tempObj.transform.position) < 0.5f) 
         {
             tempObj.transform.SetParent(tempUnit.transform, true);

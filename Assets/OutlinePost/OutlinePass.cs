@@ -15,7 +15,7 @@ public class OutlinePass : ScriptableRenderPass
             material = CoreUtils.CreateEngineMaterial("Custom/Outline");
         }
 
-        renderPassEvent =  RenderPassEvent.BeforeRenderingPostProcessing;
+        renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
     }
 
     public override void OnCameraSetup(CommandBuffer cmd, ref RenderingData renderingData)
