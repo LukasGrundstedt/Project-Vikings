@@ -1,4 +1,4 @@
-Shader "Hidden/PostProcessOutline"
+Shader "Custom/PostOutline"
 {
 
     SubShader

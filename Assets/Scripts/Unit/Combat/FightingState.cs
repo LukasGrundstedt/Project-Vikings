@@ -13,7 +13,7 @@ public class FightingState : State
 
     public override void OnStateEnter()
     {
-        targetSoldier = targetSoldier.gameObject.GetComponent<Soldier>();
+        targetSoldier = entity.SoldierStats.Target.gameObject.GetComponent<Soldier>();
     }
 
     public override void OnStateUpdate()
