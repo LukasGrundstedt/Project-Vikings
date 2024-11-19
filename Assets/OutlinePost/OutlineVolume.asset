@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8074824538089931092
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5048d49f81c5a4fb4c3f82bc4da574, type: 3}
+  m_Name: CustomPostOutline
+  m_EditorClassIdentifier: 
+  active: 0
+  Intensity:
+    m_OverrideState: 1
+    m_Value: 1
+  OverlayColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.9245283, g: 0.06541473, b: 0.06541473, a: 1}
 --- !u!114 &-6406107822158472617
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -12,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   postExposure:
     m_OverrideState: 0
     m_Value: 0
@@ -42,3 +61,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   components:
   - {fileID: -6406107822158472617}
+  - {fileID: -8074824538089931092}
