@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Wrapped Leather
-  m_Shader: {fileID: -6465566751694194690, guid: 2edac9779edcc2b449d21f7b2e0a443a,
+  m_Name: Wooden Planks
+  m_Shader: {fileID: -6465566751694194690, guid: 2356f02f79be8c848b18ba8825590202,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -25,7 +25,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Height_Map:
-        m_Texture: {fileID: 2800000, guid: 534ebad50ee991a438d67c5b0d5269bf, type: 3}
+        m_Texture: {fileID: 2800000, guid: eff67e6310b43664e8f65b63e48a70ac, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -42,15 +42,16 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Invert_Normal_Map: 1
-    - _Normal_Strength: 0.00119
+    - _Normal_Strength: 0.0129
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Smoothness: 0.3
+    - _Wood_Normal_Strength: 0.01
     m_Colors:
-    - _Color: {r: 0.23535956, g: 0.2905884, b: 0.4056604, a: 0}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 0.3773585, g: 0.26271078, b: 0.18333928, a: 1}
+    - _Tiling: {r: 1, g: 19.29, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2752357784948211082
+--- !u!114 &7104058503369512938
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
