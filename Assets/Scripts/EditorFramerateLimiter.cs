@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class EditorFramerateLimiter : MonoBehaviour
 {
+    [SerializeField] private int fpsLimit = 120;
+
+
     void Awake()
     {
         QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = fpsLimit;
     }
 }
