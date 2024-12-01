@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Sword : MonoBehaviour
-{
-    public Action OnImpact;
-
+public class Sword : MeleeWeapon
+{ 
     // Start is called before the first frame update
     void Start()
     {

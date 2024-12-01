@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 [ExecuteInEditMode]
 public class Soldier : MonoBehaviour
 {
+    [SerializeField] private Sprite portrait;
+    public Sprite Portrait { get => portrait; set => portrait = value; }
+
+
     [SerializeField] private int maxHp = 100;
     [SerializeField] private int hp = 100;
 
@@ -18,18 +21,17 @@ public class Soldier : MonoBehaviour
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
 
-    [SerializeField] private float angle;
+    //[SerializeField] private float angle;
 
-    [SerializeField] private Healthbar healthBar;
+    [SerializeField] private UnitStatDisplay statDisplay;
 
     [SerializeField] private Animator swordAnimator;
 
     [field: SerializeField]
-    public GameObject MainHand { get; set; }
-    private Sword sword;
+    public MainHand MainHand { get; set; }
 
     [field: SerializeField]
-    public GameObject OffHand { get; set; }
+    public OffHand OffHand { get; set; }
 
     [field: SerializeField]
     public Soldier Target { get; set; }
@@ -44,6 +46,7 @@ public class Soldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        statDisplay.DisplayStats((float)hp / maxHp, attack, dmg, defense, armor);
     }
 
     // Update is called once per frame
@@ -141,7 +144,12 @@ public class Soldier : MonoBehaviour
     public void TakeDamage(int value)
     {
         hp = Mathf.Clamp(hp - value, 0, hp);
-        healthBar.UpdateHealthBar(hp, maxHp);
+        UpdateUI((float)hp / maxHp);
+    }
+
+    private void UpdateUI(float hpBarValue, params object[] stats)
+    {
+        statDisplay.DisplayStats(hpBarValue, stats);
     }
 
     private void DebugLines()
@@ -160,17 +168,16 @@ public class Soldier : MonoBehaviour
 
         //Angle Line
         Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
-        angle = (Vector3.Angle(ownPosition - targetObjectPosition, transform.forward));
+        //angle = (Vector3.Angle(ownPosition - targetObjectPosition, transform.forward));
     }
 
-    private void OnEnable()
-    {
-        sword = MainHand.GetComponentInChildren<Sword>();
-        sword.OnImpact += ResolveAttack;
-    }
+    //private void OnEnable()
+    //{
+    //    MainHand.HeldWeapon.OnImpact += ResolveAttack;
+    //}
 
-    private void OnDisable()
-    {
-        sword.OnImpact -= ResolveAttack;
-    }
+    //private void OnDisable()
+    //{
+    //    MainHand.HeldWeapon.OnImpact -= ResolveAttack;
+    //}
 }

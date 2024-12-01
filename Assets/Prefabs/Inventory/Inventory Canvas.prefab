@@ -358,8 +358,7 @@ GameObject:
   - component: {fileID: 8162779557266876212}
   - component: {fileID: 3623944765830639656}
   - component: {fileID: 6136091138106954806}
-  - component: {fileID: 5824063038529714619}
-  - component: {fileID: 1942315007541031545}
+  - component: {fileID: 4783015870637828439}
   m_Layer: 5
   m_Name: Inventory Button
   m_TagString: Untagged
@@ -425,7 +424,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5824063038529714619
+--- !u!114 &4783015870637828439
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -434,7 +433,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8422452399998184565}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -466,13 +465,16 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6136091138106954806}
-  m_OnClick:
+  toggleTransition: 1
+  graphic: {fileID: 0}
+  m_Group: {fileID: 0}
+  onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1942315007541031545}
-        m_TargetAssemblyTypeName: InventoryButton, Assembly-CSharp
+      - m_Target: {fileID: 1571572476765448777}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
-        m_Mode: 1
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -481,19 +483,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1942315007541031545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8422452399998184565}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9dcaa9c18c543e54997342152dd7cd2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1571572476765448777}
+  m_IsOn: 0
 --- !u!1001 &8189454359457785925
 PrefabInstance:
   m_ObjectHideFlags: 0

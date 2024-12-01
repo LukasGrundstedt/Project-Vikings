@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class UnitManager : MonoBehaviour
 {
-    public static UnitManager Instance;
+    public static UnitManager Instance; /*{ get => instance == null ? new UnitManager() : instance; private set => instance = value; }
+    private static UnitManager instance;*/
 
     public List<GameObject> Units = new();
     public List<GameObject> UnitsSelected = new();
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != this) Instance = this;
 
         Units = new List<GameObject>();
     }
-
 
     #region Selection
     public void ClickSelect(GameObject unitToAdd)
