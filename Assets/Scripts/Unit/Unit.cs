@@ -69,6 +69,11 @@ public class Unit : Entity
         }
     }
 
+    public override void OnMouseDown()
+    {
+        UnitClick.UnitClicked(gameObject);
+    }
+
     private void OnDestroy()
     {
         UnitManager.Instance.Units.Remove(gameObject);

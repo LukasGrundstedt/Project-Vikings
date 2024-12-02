@@ -6,6 +6,7 @@ public interface ISelectable : IHighlightable
 
     public virtual void VisualizeSelection(bool isSelected)
     {
+        Highlighted = isSelected;
         SelectVisual.SetActive(isSelected);
     }
 }

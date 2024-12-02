@@ -39,9 +39,11 @@ Material:
     m_Ints: []
     m_Floats:
     - _Distance: 2.5
+    - _Proximity_Fade: 0
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.37735847, g: 0.37735847, b: 0.37735847, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &3159845726512003137
 MonoBehaviour:

@@ -36,6 +36,9 @@ public class MouseRaycast : MonoBehaviour
                 case Layer.Ground:
                     CurrentHitType = HitType.Ground;
                     break;
+                case Layer.UI:
+                    CurrentHitType = HitType.UI;
+                    break;
                 case Layer.Interactable:
                     CurrentHitType = HitType.Object;
                     break;

@@ -22,8 +22,7 @@ public class UnitManager : MonoBehaviour
     {
         DeselectAll();
         UnitsSelected.Add(unitToAdd);
-        Highlight(unitToAdd, true);
-        unitToAdd.GetComponent<ISelectable>().Selected = true;
+        unitToAdd.GetComponent<ISelectable>().VisualizeSelection(true);
     }
 
     public void ShiftClickSelect(GameObject unitToAdd)
@@ -31,14 +30,12 @@ public class UnitManager : MonoBehaviour
         if (!UnitsSelected.Contains(unitToAdd))
         {
             UnitsSelected.Add(unitToAdd);
-            Highlight(unitToAdd, true);
-            unitToAdd.GetComponent<ISelectable>().Selected = true;
+            unitToAdd.GetComponent<ISelectable>().VisualizeSelection(true);
         }
         else // This is throwing errors
         {
-            unitToAdd.GetComponent<ISelectable>().Selected = false;
+            unitToAdd.GetComponent<ISelectable>().VisualizeSelection(false);
             UnitsSelected.Remove(unitToAdd);
-            Highlight(unitToAdd, false);
         }
     }
 
@@ -47,8 +44,7 @@ public class UnitManager : MonoBehaviour
         if (!UnitsSelected.Contains(unitToAdd))
         {
             UnitsSelected.Add(unitToAdd);
-            Highlight(unitToAdd, true);
-            unitToAdd.GetComponent<ISelectable>().Selected = true;
+            unitToAdd.GetComponent<ISelectable>().VisualizeSelection(true);
         }
     }
 
@@ -56,16 +52,11 @@ public class UnitManager : MonoBehaviour
     {
         foreach (GameObject unitToRemove in UnitsSelected)
         {
-            Highlight(unitToRemove, false);
-            unitToRemove.GetComponent<ISelectable>().Selected = false;
+            unitToRemove.GetComponent<ISelectable>().VisualizeSelection(false);
         }
 
         UnitsSelected.Clear();
     }
 
-    private void Highlight(GameObject obj, bool b)
-    {
-        obj.GetComponent<ISelectable>().VisualizeSelection(b);
-    }
     #endregion
 }

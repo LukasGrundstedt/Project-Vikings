@@ -9,23 +9,36 @@ public class UnitClick : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (MouseRaycast.CurrentHitType == HitType.Unit)
+            if (MouseRaycast.CurrentHitType == HitType.UI) return;
+            if (MouseRaycast.CurrentHitType == HitType.Ground || MouseRaycast.CurrentHitType == HitType.None)
             {
-                RaycastHit hitInfo = MouseRaycast.HitInfo;
+                if (Input.GetKey(KeyCode.LeftShift)) return;
+                UnitManager.Instance.DeselectAll();
+            }
+        }
+    }
+
+    public static void UnitClicked(GameObject unitToAdd)
+    {
+        //if (Input.GetMouseButtonDown(0))
+        //{
+            //if (MouseRaycast.CurrentHitType == HitType.Unit)
+            {
+                //RaycastHit hitInfo = MouseRaycast.HitInfo;
 
                 if (Input.GetKey(KeyCode.LeftShift))
                 {
-                    UnitManager.Instance.ShiftClickSelect(hitInfo.collider.gameObject);
+                    UnitManager.Instance.ShiftClickSelect(unitToAdd);
                 }
                 else
                 {
-                    UnitManager.Instance.ClickSelect(hitInfo.collider.gameObject);
+                    UnitManager.Instance.ClickSelect(unitToAdd);
                 }
             }
-            else
-            {
-                if (!Input.GetKey(KeyCode.LeftShift)) UnitManager.Instance.DeselectAll();
-            }
-        }
+            //else
+            //{
+            //    if (!Input.GetKey(KeyCode.LeftShift)) UnitManager.Instance.DeselectAll();
+            //}
+        //}
     }
 }

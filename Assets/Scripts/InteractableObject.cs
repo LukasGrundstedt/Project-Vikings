@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goblet : InteractableObject
+public class InteractableObject : Entity, IInteractable
 {
+    [field: SerializeField]
+    public GameObject PointParent { get ; set; }
+
     // Start is called before the first frame update
     new void Start()
     {

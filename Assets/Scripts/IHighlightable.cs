@@ -4,5 +4,8 @@ using UnityEngine;
 
 public interface IHighlightable
 {
+    public bool Highlighted { get; set; }
     public GameObject SelectVisual { get; set; }
+
+    public void Highlight(bool highlighted);
 }

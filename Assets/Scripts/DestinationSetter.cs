@@ -7,7 +7,6 @@ public class DestinationSetter : MonoBehaviour
     private Vector3 scale;
     private Vector3 circleVector;
     [SerializeField] private List<GameObject> objects;
-    [SerializeField] private Highlighter highlighter;
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +26,6 @@ public class DestinationSetter : MonoBehaviour
 
         if (MouseRaycast.CurrentHitType == HitType.Ground)
         {
-
             circleVector = new Vector3(hitInfo.point.x, hitInfo.point.y + 0.1f, hitInfo.point.z);
             transform.position = circleVector;
 
@@ -45,7 +43,7 @@ public class DestinationSetter : MonoBehaviour
             }
         }
 
-        if (highlighter.CurrentHighlight != null)
+        if (MouseRaycast.CurrentHitType == HitType.Object)
         {
             GetComponent<SpriteRenderer>().enabled = false;
 
@@ -80,7 +78,7 @@ public class DestinationSetter : MonoBehaviour
 
                     case HitType.Object:
                         //Collect Item
-                        UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, highlighter.CurrentHighlight.transform.position);
+                        UnitManager.Instance.UnitsSelected[0].GetComponent<BehaviourStateMachine>().SetAction(ActionType.Move, hitInfo.transform.position);
                         break;
 
                     case HitType.Unit:
