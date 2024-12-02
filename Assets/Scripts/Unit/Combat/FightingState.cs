@@ -6,23 +6,23 @@ public class FightingState : State
 {
     private Soldier targetSoldier;
 
-    public FightingState(Entity entity) : base(entity)
+    public FightingState(Soldier soldier) : base(soldier)
     {
 
     }
 
     public override void OnStateEnter()
     {
-        targetSoldier = entity.SoldierStats.Target.gameObject.GetComponent<Soldier>();
+        targetSoldier = soldier.Target.gameObject.GetComponent<Soldier>();
     }
 
     public override void OnStateUpdate()
     {
         FaceOpponent(targetSoldier.gameObject);
 
-        if (entity.transform.position.CompareDistance(targetSoldier.gameObject.transform.position) > entity.SoldierStats.AttackRange) return;
-        if (entity.SoldierStats.AttackCooldown > 0f) return;
-        entity.SoldierStats.Attack();
+        if (soldier.transform.position.CompareDistance(targetSoldier.gameObject.transform.position) > soldier.AttackRange) return;
+        if (soldier.AttackCooldown > 0f) return;
+        soldier.Attack();
     }
 
     public override void OnStateExit()
@@ -32,6 +32,6 @@ public class FightingState : State
 
     private void FaceOpponent(GameObject opponent)
     {
-        entity.EntityAgent.destination = opponent.transform.position - entity.transform.forward * 2;
+        soldier.EntityAgent.destination = opponent.transform.position - soldier.transform.forward * 2;
     }
 }

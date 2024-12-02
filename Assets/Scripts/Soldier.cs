@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [ExecuteInEditMode]
 public class Soldier : MonoBehaviour
@@ -8,18 +9,17 @@ public class Soldier : MonoBehaviour
     [SerializeField] private Sprite portrait;
     public Sprite Portrait { get => portrait; set => portrait = value; }
 
-
     [SerializeField] private int maxHp = 100;
     [SerializeField] private int hp = 100;
-
     [SerializeField] private int attack = 10;
     [SerializeField] private int dmg = 10;
     [SerializeField] private float attackSpeed = 1f;
-
     [SerializeField] private int defense = 10;
     [SerializeField] private int armor = 10;
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
+
+    private bool unitSoldier;
 
     //[SerializeField] private float angle;
 
@@ -36,6 +36,9 @@ public class Soldier : MonoBehaviour
     [field: SerializeField]
     public Soldier Target { get; set; }
 
+    [field: SerializeField]
+    public NavMeshAgent EntityAgent { get; set; }
+
     private enum AttackSuccess
     {
         None,
@@ -46,6 +49,11 @@ public class Soldier : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        unitSoldier = TryGetComponent<Unit>(out _);
+
+
+        if (!unitSoldier) return;
+
         statDisplay.DisplayStats((float)hp / maxHp, attack, dmg, defense, armor);
     }
 

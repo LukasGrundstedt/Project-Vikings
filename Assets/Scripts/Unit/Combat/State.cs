@@ -4,11 +4,11 @@ using UnityEngine;
 
 public abstract class State
 {
-    protected Entity entity;
+    protected Soldier soldier;
 
-    public State(Entity entity)
+    public State(Soldier soldier)
     {
-        this.entity = entity;
+        this.soldier = soldier;
     }
 
     public virtual void OnStateEnter()

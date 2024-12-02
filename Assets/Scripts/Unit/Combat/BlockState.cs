@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlockState : State
 {
-    public BlockState(Entity entity) : base(entity)
+    public BlockState(Soldier soldier) : base(soldier)
     {
 
     }

@@ -7,14 +7,14 @@ public class WalkingState : State
     public Vector3 Destination;
     private BehaviourStateMachine stateMachine;
 
-    public WalkingState(Entity entity, Vector3 destination) : base(entity)
+    public WalkingState(Soldier soldier, Vector3 destination) : base(soldier)
     {
         Destination = destination;
     }
 
     public override void OnStateEnter()
     {
-        stateMachine = entity.GetComponent<BehaviourStateMachine>();
+        stateMachine = soldier.GetComponent<BehaviourStateMachine>();
     }
 
     public override void OnStateUpdate()
@@ -22,7 +22,7 @@ public class WalkingState : State
         Destination = stateMachine.Destination;
 
         if (Destination == null) return;
-        entity.EntityAgent.destination = Destination;
+        soldier.EntityAgent.destination = Destination;
 
         //if (entity.transform.position.magnitude - destination.magnitude < 0.1f) entity.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Idle, Vector3.zero);
     }

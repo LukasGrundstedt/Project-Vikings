@@ -1,29 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using System;
 
 public class Entity : MonoBehaviour, ISelectable
 {
-    [field: SerializeField]
     public bool Highlighted { get; set; }
-    [field: SerializeField]
     public bool Selected { get; set; }
-    public Action OnSelection;
+
+    [field: SerializeField]
+    public Color OutlineColor { get; set; }
 
     [field: SerializeField]
     public GameObject SelectVisual { get; set; }
 
-    [field: SerializeField]
     protected EntityStatDisplay EntityDisplay { get; set; }
-
-
-    [field: SerializeField]
-    public NavMeshAgent EntityAgent { get; set; }
-
-    [field: SerializeField]
-    public Soldier SoldierStats { get; set; }
 
     protected void Start()
     {
@@ -32,20 +23,21 @@ public class Entity : MonoBehaviour, ISelectable
 
     private void SetDisplay(EntityStatDisplay display)
     {
-        this.EntityDisplay = display;
-        Debug.Log("Set Display");
+        EntityDisplay = display;
     }
 
     public void Highlight(bool highlighted)
     {
         Highlighted = highlighted;
         SelectVisual.SetActive(highlighted);
+        SelectVisual.GetComponent<MeshRenderer>().material.color = OutlineColor;
     }
 
     public void VisualizeSelection(bool isSelected)
     {
         Selected = isSelected;
         SelectVisual.SetActive(isSelected);
+        SelectVisual.GetComponent<MeshRenderer>().material.color = OutlineColor;
     }
 
     public void OnMouseEnter()
@@ -69,15 +61,9 @@ public class Entity : MonoBehaviour, ISelectable
         VisualizeSelection(true);
     }
 
-    //public void Highlight(bool highlighted)
-    //{
-    //    SelectVisual.SetActive(highlighted);
-    //}
-
     private void OnEnable()
     {
         EntityStatDisplay.OnCreation += SetDisplay;
-        Debug.Log(gameObject.name);
     }
 
     private void OnDisable()

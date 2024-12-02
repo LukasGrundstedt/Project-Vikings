@@ -3,14 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Entity))]
+[RequireComponent(typeof(Soldier))]
 public class BehaviourStateMachine : MonoBehaviour
 {
     public State DefaultState { get; set; }
     public State CurrentState { get; set; }
     private Dictionary<State, Dictionary<Func<bool>, State>> states;
 
-    private Entity entity;
+    private Soldier soldier;
 
     public Vector3 Destination { get; set; } = Vector3.zero;
     
@@ -19,13 +19,13 @@ public class BehaviourStateMachine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        entity = GetComponent<Entity>();
+        soldier = GetComponent<Soldier>();
 
-        State idleState = new IdleState(entity);
-        State fightingState = new FightingState(entity);
-        State attackState = new AttackState(entity);
-        State blockState = new BlockState(entity);
-        State walkingState = new WalkingState(entity, Vector3.zero);
+        State idleState = new IdleState(soldier);
+        State fightingState = new FightingState(soldier);
+        State attackState = new AttackState(soldier);
+        State blockState = new BlockState(soldier);
+        State walkingState = new WalkingState(soldier, Vector3.zero);
 
         states = new()
         {

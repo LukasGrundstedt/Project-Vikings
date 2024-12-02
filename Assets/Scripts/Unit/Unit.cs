@@ -10,6 +10,8 @@ public class Unit : Entity
     [SerializeField] private MainHand mainhand;
     [SerializeField] private OffHand offhand;
 
+    [SerializeField] private Soldier soldierStats;
+
     // Start is called before the first frame update
     void Awake()
     {

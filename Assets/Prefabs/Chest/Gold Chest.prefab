@@ -725,6 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a511fa7782f4f7141b2f8822881fd804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <OutlineColor>k__BackingField: {r: 1, g: 1, b: 1, a: 0}
   <SelectVisual>k__BackingField: {fileID: 0}
   <PointParent>k__BackingField: {fileID: 6736001635007751880}
 --- !u!1001 &7565432517548014022

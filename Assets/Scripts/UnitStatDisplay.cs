@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class UnitStatDisplay : MonoBehaviour
 {
     [SerializeField] private Slider uiHealthBar;
-    [SerializeField] private Slider ssHealthBar;
+    [SerializeField] private Slider wsHealthBar;
 
     [SerializeField] private TextMeshProUGUI[] texts;
 
@@ -37,7 +37,7 @@ public class UnitStatDisplay : MonoBehaviour
     public void DisplayStats(float hpBarValue, params object[] stats)
     {
         uiHealthBar.value = hpBarValue;
-        ssHealthBar.value = hpBarValue;
+        wsHealthBar.value = hpBarValue;
 
         for (int i = 0; i < stats.Length; i++)
         {
@@ -54,6 +54,9 @@ public class UnitStatDisplay : MonoBehaviour
         unitPortraitFrame.transform.SetParent(portraitParent, false);
     }
 
+    /// <summary>
+    /// Used by Button 'Unit Portrait Background
+    /// </summary>
     public void OnClick()
     {
         GameObject unit = entity.gameObject;

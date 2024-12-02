@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackState : State
 {
-    public AttackState(Entity entity) : base(entity)
+    public AttackState(Soldier soldier) : base(soldier)
     {
 
     }

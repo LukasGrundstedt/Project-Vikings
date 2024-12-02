@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdleState : State
 {
-    public IdleState(Entity entity) : base(entity)
+    public IdleState(Soldier soldier) : base(soldier)
     {
 
     }
@@ -16,7 +16,7 @@ public class IdleState : State
 
     public override void OnStateUpdate()
     {
-        entity.EntityAgent.destination = entity.transform.position;
+        soldier.EntityAgent.destination = soldier.transform.position;
     }
 
     public override void OnStateExit()
