@@ -14,6 +14,8 @@ public class Entity : MonoBehaviour, ISelectable
     [field: SerializeField]
     public GameObject SelectVisual { get; set; }
 
+    [SerializeField] protected Stats stats;
+
     protected EntityStatDisplay EntityDisplay { get; set; }
 
     protected void Start()

@@ -86,6 +86,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f785e413d0c566644a15582091be8135, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8721502988730118605 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9194448006249159531, guid: f1e5ca7cf306a1c41874d84c6496a625,
+    type: 3}
+  m_PrefabInstance: {fileID: 472945568633825958}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2961122430616740590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,6 +150,11 @@ PrefabInstance:
       propertyPath: statDisplay
       value: 
       objectReference: {fileID: 4334911713553502288}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: swordAnimator
+      value: 
+      objectReference: {fileID: 8721502988730118605}
     - target: {fileID: 2027191235951203416, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
       propertyPath: m_Enabled
@@ -421,6 +432,7 @@ PrefabInstance:
       objectReference: {fileID: 6483421980852413125}
     m_RemovedComponents:
     - {fileID: 5257735182627397485, guid: 88fb260cbca185b448558ec931a18f2c, type: 3}
+    - {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5248971429043234221, guid: 88fb260cbca185b448558ec931a18f2c,
@@ -442,11 +454,11 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8824837721375528786, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
-      insertIndex: 2
+      insertIndex: 1
       addedObject: {fileID: 3096676551095997773}
     - targetCorrespondingSourceObject: {fileID: 8824837721375528786, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
-      insertIndex: 3
+      insertIndex: 2
       addedObject: {fileID: 4334911713553502288}
   m_SourcePrefab: {fileID: 100100000, guid: 88fb260cbca185b448558ec931a18f2c, type: 3}
 --- !u!4 &1278503478712522940 stripped
@@ -473,30 +485,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2961122430616740590}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5114950127864558519 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8062552894616801625, guid: 88fb260cbca185b448558ec931a18f2c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2961122430616740590}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ca185aa93fa71845be4c2749e575e5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5932361579974407666 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8884474259956995868, guid: 88fb260cbca185b448558ec931a18f2c,
-    type: 3}
-  m_PrefabInstance: {fileID: 2961122430616740590}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 66743303bf5268f42891ae20cbd26365, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6007830557765170620 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8824837721375528786, guid: 88fb260cbca185b448558ec931a18f2c,
@@ -517,9 +505,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <OutlineColor>k__BackingField: {r: 0.56136525, g: 0.8207547, b: 0.74661803, a: 0}
   <SelectVisual>k__BackingField: {fileID: 4713215036646352639}
-  mainhand: {fileID: 5932361579974407666}
-  offhand: {fileID: 5114950127864558519}
-  soldierStats: {fileID: 0}
+  stats:
+    MaxHp: 100
+    Hp: 100
+    Atk: 10
+    Dmg: 10
+    AttackSpeed: 10
+    Def: 10
+    Armor: 10
+  portrait: {fileID: 0}
+  statDisplay: {fileID: 0}
+  swordAnimator: {fileID: 0}
+  <MainHand>k__BackingField: {fileID: 0}
+  <OffHand>k__BackingField: {fileID: 0}
+  <Target>k__BackingField: {fileID: 0}
+  <EntityAgent>k__BackingField: {fileID: 0}
 --- !u!114 &4334911713553502288
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -142,6 +142,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0883828b8feacda48a552734a904c355, type: 3}
+--- !u!114 &2239336572781728126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3860458872869217252, guid: 0883828b8feacda48a552734a904c355,
+    type: 3}
+  m_PrefabInstance: {fileID: 3062626261331210906}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f785e413d0c566644a15582091be8135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2602921174480939502 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1053786649444129652, guid: 0883828b8feacda48a552734a904c355,
@@ -230,6 +242,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.Hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.Atk
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.Def
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.Dmg
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.Armor
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.MaxHp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: stats.AttackSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5248971429043234221, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -310,7 +357,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8824837721375528786, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8884474259956995868, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: <HeldWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 2239336572781728126}
+    m_RemovedComponents:
+    - {fileID: 5257735182627397485, guid: 88fb260cbca185b448558ec931a18f2c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5248971429043234221, guid: 88fb260cbca185b448558ec931a18f2c,

@@ -256,9 +256,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e7c3bf94d9da842a83b23f86aa56c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Highlighted>k__BackingField: 0
-  <Selected>k__BackingField: 0
+  <OutlineColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   <SelectVisual>k__BackingField: {fileID: 7525709813629568017}
+  stats:
+    MaxHp: 100
+    Hp: 100
+    Atk: 10
+    Dmg: 10
+    AttackSpeed: 1
+    Def: 10
+    Armor: 10
 --- !u!33 &6274911323469191000
 MeshFilter:
   m_ObjectHideFlags: 0

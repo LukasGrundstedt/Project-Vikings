@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[ExecuteInEditMode]
-public class Soldier : MonoBehaviour
+//[ExecuteInEditMode]
+public class Soldier : Entity
 {
     [SerializeField] private Sprite portrait;
     public Sprite Portrait { get => portrait; set => portrait = value; }
 
-    [SerializeField] private int maxHp = 100;
-    [SerializeField] private int hp = 100;
-    [SerializeField] private int attack = 10;
-    [SerializeField] private int dmg = 10;
-    [SerializeField] private float attackSpeed = 1f;
-    [SerializeField] private int defense = 10;
-    [SerializeField] private int armor = 10;
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
 
@@ -47,14 +40,16 @@ public class Soldier : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    void Start()
+    new void Start()
     {
+        base.Start();
+
         unitSoldier = TryGetComponent<Unit>(out _);
 
 
-        if (!unitSoldier) return;
+        if (unitSoldier) return;
 
-        statDisplay.DisplayStats((float)hp / maxHp, attack, dmg, defense, armor);
+        statDisplay.DisplayStats((float)stats.Hp / stats.MaxHp, stats.Atk, stats.Dmg, stats.Def, stats.Armor);
     }
 
     // Update is called once per frame
@@ -83,14 +78,14 @@ public class Soldier : MonoBehaviour
         }
         swordAnimator.SetTrigger("Slash2");
 
-        AttackCooldown = 1f / attackSpeed;
+        AttackCooldown = 1f / stats.AttackSpeed;
     }
 
     private void ResolveAttack()
     {
         if (SuccessfulAttack())
         {
-            Target.TakeDamage(dmg);
+            Target.TakeDamage(stats.Dmg);
         }
     }
 
@@ -138,7 +133,7 @@ public class Soldier : MonoBehaviour
 
     private bool TryBreakDefense(Soldier target)
     {
-        int advantage = attack - target.defense;
+        int advantage = stats.Atk - target.stats.Def;
         advantage = Mathf.Max(1, advantage); //Minimum 1
 
         int probability = Random.Range(1, 11);
@@ -151,8 +146,8 @@ public class Soldier : MonoBehaviour
 
     public void TakeDamage(int value)
     {
-        hp = Mathf.Clamp(hp - value, 0, hp);
-        UpdateUI((float)hp / maxHp);
+        stats.Hp = Mathf.Clamp(stats.Hp - value, 0, stats.Hp);
+        UpdateUI((float)stats.Hp / stats.MaxHp);
     }
 
     private void UpdateUI(float hpBarValue, params object[] stats)
@@ -179,13 +174,13 @@ public class Soldier : MonoBehaviour
         //angle = (Vector3.Angle(ownPosition - targetObjectPosition, transform.forward));
     }
 
-    //private void OnEnable()
-    //{
-    //    MainHand.HeldWeapon.OnImpact += ResolveAttack;
-    //}
+    private void OnEnable()
+    {
+        MainHand.HeldWeapon.OnImpact += ResolveAttack;
+    }
 
-    //private void OnDisable()
-    //{
-    //    MainHand.HeldWeapon.OnImpact -= ResolveAttack;
-    //}
+    private void OnDisable()
+    {
+        MainHand.HeldWeapon.OnImpact -= ResolveAttack;
+    }
 }

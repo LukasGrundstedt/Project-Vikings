@@ -4,17 +4,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitStatDisplay : MonoBehaviour
+public class UnitStatDisplay : EntityStatDisplay
 {
-    [SerializeField] private Slider uiHealthBar;
-    [SerializeField] private Slider wsHealthBar;
-
-    [SerializeField] private TextMeshProUGUI[] texts;
-
     [SerializeField] private GameObject unitPortraitPrefab;
     [SerializeField] private GameObject unitPortraitFrame;
 
-    [SerializeField] private Entity entity;
     [SerializeField] private GameObject selectionHighlight;
 
     private void Start()
@@ -26,7 +20,7 @@ public class UnitStatDisplay : MonoBehaviour
     {
         if (selectionHighlight == null) return;
 
-        selectionHighlight.SetActive(entity.Selected);
+        selectionHighlight.SetActive(displayedEntity.Selected);
     }
 
     /// <summary>
@@ -34,10 +28,10 @@ public class UnitStatDisplay : MonoBehaviour
     /// </summary>
     /// <param name="hpBarValue"></param>
     /// <param name="stats">atk, dmg, def, armor, attackSpeed, attackRange</param>
-    public void DisplayStats(float hpBarValue, params object[] stats)
+    public override void DisplayStats(float hpBarValue, params object[] stats)
     {
         uiHealthBar.value = hpBarValue;
-        wsHealthBar.value = hpBarValue;
+        if (wsHealthBar) wsHealthBar.value = hpBarValue;
 
         for (int i = 0; i < stats.Length; i++)
         {
@@ -59,7 +53,7 @@ public class UnitStatDisplay : MonoBehaviour
     /// </summary>
     public void OnClick()
     {
-        GameObject unit = entity.gameObject;
+        GameObject unit = displayedEntity.gameObject;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {

@@ -2,15 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Unit : Entity
+public class Unit : Soldier
 {
     public GameObject CarriedMainObj { get; set; }
     public GameObject CarriedOffObj { get; set; }
-
-    [SerializeField] private MainHand mainhand;
-    [SerializeField] private OffHand offhand;
-
-    [SerializeField] private Soldier soldierStats;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,17 +36,17 @@ public class Unit : Entity
         obj.layer = (int)Layer.Interactable;
         obj.transform.position = new Vector3(obj.transform.position.x, 0, obj.transform.position.z);
 
-        if (mainhand.MainHandObj.activeInHierarchy == false)
+        if (MainHand.MainHandObj.activeInHierarchy == false)
         {
-            mainhand.MainHandObj.SetActive(true);
+            MainHand.MainHandObj.SetActive(true);
             CarriedMainObj = null;
-            mainhand.MainHandFull = false;
+            MainHand.MainHandFull = false;
         }
-        else if (offhand.OffHandObj.activeInHierarchy == false)
+        else if (OffHand.OffHandObj.activeInHierarchy == false)
         {
-            offhand.OffHandObj.SetActive(true);
+            OffHand.OffHandObj.SetActive(true);
             CarriedOffObj = null;
-            offhand.OffHandFull = false;
+            OffHand.OffHandFull = false;
         }
     }
 

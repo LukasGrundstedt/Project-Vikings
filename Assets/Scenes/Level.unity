@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -581,6 +581,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5787359317554352931, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6007830557765170620, guid: 33541f5187d86144ba711499748fc37e,
         type: 3}
       propertyPath: m_Name
@@ -727,6 +732,26 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4332914030954101831, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: <SelectVisual>k__BackingField
+      value: 
+      objectReference: {fileID: 1112173196}
+    - target: {fileID: 4332914030954101831, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.b
+      value: 0.71139127
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332914030954101831, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.g
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332914030954101831, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.r
+      value: 0.5995609
+      objectReference: {fileID: 0}
     - target: {fileID: 4627802441165715168, guid: 33541f5187d86144ba711499748fc37e,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -750,6 +775,11 @@ PrefabInstance:
     - target: {fileID: 5683195075581474778, guid: 33541f5187d86144ba711499748fc37e,
         type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5787359317554352931, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6007830557765170620, guid: 33541f5187d86144ba711499748fc37e,
@@ -1199,6 +1229,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca13a52b645be1347becc891cf6048fd, type: 3}
+--- !u!1 &1112173196 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4713215036646352639, guid: 33541f5187d86144ba711499748fc37e,
+    type: 3}
+  m_PrefabInstance: {fileID: 677386619}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1210136341 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4554048734940834052, guid: ca13a52b645be1347becc891cf6048fd,
@@ -1661,16 +1697,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 3630665668999385166, guid: 0f752c4658f78144eb4a2546a6dd99e8,
-        type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3630665668999385166, guid: 0f752c4658f78144eb4a2546a6dd99e8,
-        type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
