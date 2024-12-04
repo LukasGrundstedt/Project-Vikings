@@ -15,11 +15,14 @@ public class Unit : Soldier
 
     new private void Start()
     {
-        base.Start();
+        UpdateHealthBars();
+        //EntityDisplay.DisplayStats(DisplayableHp(), DisplayableStats());
     }
 
-    private void Update()
+    new void Update()
     {
+        base.Update();
+
         if (CarriedMainObj != null && Input.GetKeyUp(KeyCode.X) && Selected == true)
         { 
             DropAnyObject(CarriedMainObj);

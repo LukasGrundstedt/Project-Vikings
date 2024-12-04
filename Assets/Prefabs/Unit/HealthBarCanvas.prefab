@@ -248,11 +248,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8698702594911915070}
+  - component: {fileID: 1013450398625274585}
+  - component: {fileID: 4228796984077870295}
   - component: {fileID: 7311359215986478852}
   - component: {fileID: 2627369565230491589}
   - component: {fileID: 8978528327010932274}
-  - component: {fileID: 4228796984077870295}
-  - component: {fileID: 1013450398625274585}
   m_Layer: 5
   m_Name: HealthBarCanvas
   m_TagString: Untagged
@@ -280,6 +280,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -1.4699707}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1013450398625274585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451469070907952269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4572715ca9a70346876e609d075ad18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 6097938765834848098}
+--- !u!114 &4228796984077870295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6451469070907952269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba790e1604eb6cc4c9cc60584f782a06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &7311359215986478852
 Canvas:
   m_ObjectHideFlags: 0
@@ -325,7 +350,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8978528327010932274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,31 +368,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &4228796984077870295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6451469070907952269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba790e1604eb6cc4c9cc60584f782a06, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1013450398625274585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6451469070907952269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4572715ca9a70346876e609d075ad18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 6097938765834848098}
 --- !u!1 &7342962663080798408
 GameObject:
   m_ObjectHideFlags: 0

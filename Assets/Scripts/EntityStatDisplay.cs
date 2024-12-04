@@ -7,39 +7,38 @@ using UnityEngine.UI;
 
 public class EntityStatDisplay : MonoBehaviour
 {
-    [SerializeField] protected Slider uiHealthBar;
-    [SerializeField] protected Slider wsHealthBar;
-
-    [SerializeField] protected TextMeshProUGUI[] texts;
-
-
     public static EntityStatDisplay Instance;
     public static Action<EntityStatDisplay> OnCreation;
 
-    [SerializeField] private TextMeshProUGUI label;
     [SerializeField] private GameObject displayParent;
+
+    [SerializeField] protected Slider uiHealthBar;
+
+    [SerializeField] private TextMeshProUGUI label;
+    [SerializeField] private Image portrait;
+    [SerializeField] protected TextMeshProUGUI[] texts;
 
     protected Entity displayedEntity;
 
-    private void Awake()
+    protected void Awake()
     {
         Instance = this;
         OnCreation?.Invoke(Instance);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public virtual void DisplayEntity(Entity entity)
     {
         //Clear previous selection
-        if (displayedEntity) displayedEntity.VisualizeSelection(false);
+        if (displayedEntity) 
+        { 
+            displayedEntity.VisualizeSelection(false);
+            displayedEntity.OnDamageTaken -= UpdateHealthbar;
+        }
 
         displayedEntity = entity;
+        displayedEntity.OnDamageTaken += UpdateHealthbar;
         label.text = entity.name;
+        portrait.sprite = entity.Portrait;
         displayParent.SetActive(true);
     }
 
@@ -50,13 +49,17 @@ public class EntityStatDisplay : MonoBehaviour
     /// <param name="stats">atk, dmg, def, armor, attackSpeed, attackRange</param>
     public virtual void DisplayStats(float hpBarValue, params object[] stats)
     {
-        uiHealthBar.value = hpBarValue;
-        if (wsHealthBar) wsHealthBar.value = hpBarValue;
+        UpdateHealthbar(hpBarValue);
 
         for (int i = 0; i < stats.Length; i++)
         {
             texts[i].text = stats[i].ToString();
         }
+    }
+
+    protected void UpdateHealthbar(float hpBarValue)
+    {
+        uiHealthBar.value = hpBarValue;
     }
 
     /// <summary>

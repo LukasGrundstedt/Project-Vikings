@@ -5,8 +5,14 @@ using System;
 
 public class Entity : MonoBehaviour, ISelectable
 {
+    [SerializeField] private Sprite portrait;
+    public Sprite Portrait { get => portrait; set => portrait = value; }
+
     public bool Highlighted { get; set; }
     public bool Selected { get; set; }
+
+    //Required for deriving classes, useless here though
+    public Action<float> OnDamageTaken;
 
     [field: SerializeField]
     public Color OutlineColor { get; set; }
@@ -14,13 +20,11 @@ public class Entity : MonoBehaviour, ISelectable
     [field: SerializeField]
     public GameObject SelectVisual { get; set; }
 
-    [SerializeField] protected Stats stats;
-
     protected EntityStatDisplay EntityDisplay { get; set; }
 
     protected void Start()
     {
-        SetDisplay(EntityStatDisplay.Instance);
+        if (!EntityDisplay) SetDisplay(EntityStatDisplay.Instance);
     }
 
     private void SetDisplay(EntityStatDisplay display)
@@ -60,7 +64,21 @@ public class Entity : MonoBehaviour, ISelectable
     public virtual void OnMouseDown()
     {
         EntityDisplay.DisplayEntity(this);
+        EntityDisplay.DisplayStats(DisplayableHp(), DisplayableStats());
         VisualizeSelection(true);
+    }
+
+    public virtual float DisplayableHp()
+    {
+        return 100.0f;
+    }
+
+    public virtual object[] DisplayableStats()
+    {
+        return new object[6]
+        {
+            0, 0, 0, 0, 0, 0
+        };
     }
 
     private void OnEnable()

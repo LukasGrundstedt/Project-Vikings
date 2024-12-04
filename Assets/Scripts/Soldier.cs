@@ -1,24 +1,28 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 //[ExecuteInEditMode]
 public class Soldier : Entity
 {
-    [SerializeField] private Sprite portrait;
-    public Sprite Portrait { get => portrait; set => portrait = value; }
-
-    public float AttackCooldown { get; private set; }
-    public float AttackRange { get; private set; } = 2.1f;
-
-    private bool unitSoldier;
 
     //[SerializeField] private float angle;
 
-    [SerializeField] private UnitStatDisplay statDisplay;
-
     [SerializeField] private Animator swordAnimator;
+
+    [SerializeField] protected int maxHp;
+    [SerializeField] protected int hp;
+    [SerializeField] protected int atk;
+    [SerializeField] protected float attackSpeed;
+    [SerializeField] protected int dmg;
+    [SerializeField] protected int def;
+    [SerializeField] protected int armor;
+    public float AttackCooldown { get; private set; }
+    public float AttackRange { get; private set; } = 2.1f;
+
 
     [field: SerializeField]
     public MainHand MainHand { get; set; }
@@ -32,6 +36,8 @@ public class Soldier : Entity
     [field: SerializeField]
     public NavMeshAgent EntityAgent { get; set; }
 
+    [SerializeField] private Healthbar healthbar;
+
     private enum AttackSuccess
     {
         None,
@@ -44,16 +50,11 @@ public class Soldier : Entity
     {
         base.Start();
 
-        unitSoldier = TryGetComponent<Unit>(out _);
-
-
-        if (unitSoldier) return;
-
-        statDisplay.DisplayStats((float)stats.Hp / stats.MaxHp, stats.Atk, stats.Dmg, stats.Def, stats.Armor);
+        UpdateHealthBars();
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         DebugLines();
 
@@ -76,16 +77,15 @@ public class Soldier : Entity
                 swordAnimator.SetTrigger("Slash2");
                 break;
         }
-        swordAnimator.SetTrigger("Slash2");
 
-        AttackCooldown = 1f / stats.AttackSpeed;
+        AttackCooldown = 1f / attackSpeed;
     }
 
     private void ResolveAttack()
     {
         if (SuccessfulAttack())
         {
-            Target.TakeDamage(stats.Dmg);
+            Target.TakeDamage(dmg);
         }
     }
 
@@ -133,7 +133,7 @@ public class Soldier : Entity
 
     private bool TryBreakDefense(Soldier target)
     {
-        int advantage = stats.Atk - target.stats.Def;
+        int advantage = atk - target.def;
         advantage = Mathf.Max(1, advantage); //Minimum 1
 
         int probability = Random.Range(1, 11);
@@ -146,13 +146,17 @@ public class Soldier : Entity
 
     public void TakeDamage(int value)
     {
-        stats.Hp = Mathf.Clamp(stats.Hp - value, 0, stats.Hp);
-        UpdateUI((float)stats.Hp / stats.MaxHp);
+        hp = Mathf.Clamp(hp - value, 0, hp);
+
+        UpdateHealthBars();
     }
 
-    private void UpdateUI(float hpBarValue, params object[] stats)
+    protected void UpdateHealthBars()
     {
-        statDisplay.DisplayStats(hpBarValue, stats);
+        float hpBarValue = (float)hp / maxHp;
+
+        OnDamageTaken?.Invoke(hpBarValue);
+        healthbar.UpdateHealthBar(hpBarValue);
     }
 
     private void DebugLines()
@@ -172,6 +176,19 @@ public class Soldier : Entity
         //Angle Line
         Debug.DrawLine(ownPosition, targetObjectPosition, Color.yellow);
         //angle = (Vector3.Angle(ownPosition - targetObjectPosition, transform.forward));
+    }
+
+    public override float DisplayableHp()
+    {
+        return (float)hp / maxHp;
+    }
+
+    public override object[] DisplayableStats()
+    {
+        return new object[]
+        {
+            atk, dmg, def, armor, attackSpeed, AttackRange
+        };
     }
 
     private void OnEnable()

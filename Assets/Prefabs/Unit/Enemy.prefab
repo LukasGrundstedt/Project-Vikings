@@ -244,6 +244,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
+      propertyPath: atk
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: def
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
       propertyPath: stats.Hp
       value: 100
       objectReference: {fileID: 0}
@@ -276,6 +286,21 @@ PrefabInstance:
         type: 3}
       propertyPath: stats.AttackSpeed
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.b
+      value: 0.096787095
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.g
+      value: 0.096787095
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
+      propertyPath: <OutlineColor>k__BackingField.r
+      value: 0.8207547
       objectReference: {fileID: 0}
     - target: {fileID: 5248971429043234221, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
