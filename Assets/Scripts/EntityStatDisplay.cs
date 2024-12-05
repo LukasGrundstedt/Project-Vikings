@@ -15,7 +15,7 @@ public class EntityStatDisplay : MonoBehaviour
     [SerializeField] protected Slider uiHealthBar;
 
     [SerializeField] private TextMeshProUGUI label;
-    [SerializeField] private Image portrait;
+    [SerializeField] protected Image portrait;
     [SerializeField] protected TextMeshProUGUI[] texts;
 
     protected Entity displayedEntity;

@@ -28,6 +28,7 @@ public class UnitStatDisplay : EntityStatDisplay
 
         displayedEntity = GetComponent<Entity>();
         displayedEntity.OnDamageTaken += UpdateHealthbar;
+        portrait.sprite = displayedEntity.Portrait;
         DisplayStats(displayedEntity.DisplayableHp(), displayedEntity.DisplayableStats());
     }
 
