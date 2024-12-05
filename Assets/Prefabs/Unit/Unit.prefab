@@ -550,7 +550,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayParent: {fileID: 0}
-  uiHealthBar: {fileID: 3536256056874545562}
+  uiHealthBar: {fileID: 4778014708175347504}
   label: {fileID: 0}
   portrait: {fileID: 614950545804935113}
   texts:
@@ -847,9 +847,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3536256056874545562 stripped
+--- !u!114 &4778014708175347504 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9132262307748242111, guid: 02fc06dbcba5e1744b6633242da91646,
+  m_CorrespondingSourceObject: {fileID: 1000349994574892053, guid: 02fc06dbcba5e1744b6633242da91646,
     type: 3}
   m_PrefabInstance: {fileID: 5741841082410423077}
   m_PrefabAsset: {fileID: 0}
