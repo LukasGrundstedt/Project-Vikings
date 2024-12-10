@@ -16,7 +16,7 @@ public class IdleState : State
 
     public override void OnStateUpdate()
     {
-        soldier.EntityAgent.destination = soldier.transform.position;
+        //soldier.EntityAgent.destination = soldier.transform.position;
     }
 
     public override void OnStateExit()

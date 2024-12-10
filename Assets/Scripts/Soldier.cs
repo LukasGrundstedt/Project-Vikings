@@ -8,10 +8,12 @@ using Random = UnityEngine.Random;
 //[ExecuteInEditMode]
 public class Soldier : Entity
 {
-
+    [SerializeField] private SoldierFaction factionID;
     //[SerializeField] private float angle;
 
     [SerializeField] private Animator swordAnimator;
+
+    [SerializeField] private LayerMask mask;
 
     [SerializeField] protected int maxHp;
     [SerializeField] protected int hp;
@@ -22,6 +24,8 @@ public class Soldier : Entity
     [SerializeField] protected int armor;
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
+
+    public Action OnAttacked;
 
 
     [field: SerializeField]
@@ -49,7 +53,13 @@ public class Soldier : Entity
     new void Start()
     {
         base.Start();
+        
+        Setup();
+    }
 
+    protected virtual void Setup()
+    {
+        EntityAgent.stoppingDistance = 0.1f;
         UpdateHealthBars();
     }
 
@@ -83,6 +93,8 @@ public class Soldier : Entity
 
     private void ResolveAttack()
     {
+        Target.OnAttacked?.Invoke();
+
         if (SuccessfulAttack())
         {
             Target.TakeDamage(dmg);
@@ -111,7 +123,22 @@ public class Soldier : Entity
 
     private void DetermineAttackSuccess(out AttackSuccess attackSuccess)
     {
-        Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, AttackRange + 1f);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, AttackRange + 1f, mask);
+        RaycastHit hitInfo = hits[0];
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].collider.transform.root.GetComponent<Soldier>().factionID != factionID)
+            {
+                hitInfo = hits[i];
+                break;
+            }
+            else
+            {
+                continue;
+            }
+        }
+
         int layer = hitInfo.collider.gameObject.layer;
 
         switch ((Layer)layer)
@@ -128,7 +155,6 @@ public class Soldier : Entity
                 attackSuccess = AttackSuccess.None;
                 break;
         }
-        Debug.Log(attackSuccess);
     }
 
     private bool TryBreakDefense(Soldier target)

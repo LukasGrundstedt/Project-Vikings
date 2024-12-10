@@ -13,7 +13,7 @@ public class BehaviourStateMachine : MonoBehaviour
     private Soldier soldier;
 
     public Vector3 Destination { get; set; } = Vector3.zero;
-    
+
     [SerializeField] private ActionType actionType;
 
     // Start is called before the first frame update

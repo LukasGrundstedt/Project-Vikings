@@ -20,25 +20,13 @@ public class UnitClick : MonoBehaviour
 
     public static void UnitClicked(GameObject unitToAdd)
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-            //if (MouseRaycast.CurrentHitType == HitType.Unit)
-            {
-                //RaycastHit hitInfo = MouseRaycast.HitInfo;
-
-                if (Input.GetKey(KeyCode.LeftShift))
-                {
-                    UnitManager.Instance.ShiftClickSelect(unitToAdd);
-                }
-                else
-                {
-                    UnitManager.Instance.ClickSelect(unitToAdd);
-                }
-            }
-            //else
-            //{
-            //    if (!Input.GetKey(KeyCode.LeftShift)) UnitManager.Instance.DeselectAll();
-            //}
-        //}
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            UnitManager.Instance.ShiftClickSelect(unitToAdd);
+        }
+        else
+        {
+            UnitManager.Instance.ClickSelect(unitToAdd);
+        }
     }
 }

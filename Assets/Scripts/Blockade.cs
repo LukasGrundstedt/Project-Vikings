@@ -27,10 +27,4 @@ public class Blockade : MonoBehaviour, IDestructable
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

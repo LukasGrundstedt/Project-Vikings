@@ -11,11 +11,6 @@ public class Sword : MeleeWeapon
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     /// <summary>
     /// Method called by AnimationEvent

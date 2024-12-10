@@ -9,10 +9,4 @@ public class Goblet : InteractableObject
     {
         base.Start();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WalkingState : State
 {
@@ -22,13 +23,21 @@ public class WalkingState : State
         Destination = stateMachine.Destination;
 
         if (Destination == null) return;
-        soldier.EntityAgent.destination = Destination;
+        if (!soldier.EntityAgent.SetDestination(Destination))
+        {
+            Debug.Log($"Destination was not set successfully: Destination: {Destination}, Agent Destination: {soldier.EntityAgent.destination}");
+        }
 
-        //if (entity.transform.position.magnitude - destination.magnitude < 0.1f) entity.GetComponent<BehaviourStateMachine>().SetAction(ActionType.Idle, Vector3.zero);
+        if (soldier.transform.position.CompareDistance(Destination) < 0.1f)
+        {
+            stateMachine.SetAction(ActionType.Idle, Vector3.zero);
+        } 
     }
 
     public override void OnStateExit()
     {
 
     }
+
+    
 }

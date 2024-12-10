@@ -15,7 +15,7 @@ public class Unit : Soldier
 
     new private void Start()
     {
-        UpdateHealthBars();
+        Setup();
         //EntityDisplay.DisplayStats(DisplayableHp(), DisplayableStats());
     }
 
