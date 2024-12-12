@@ -4,14 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MeleeWeapon
-{ 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-
+{
     /// <summary>
     /// Method called by AnimationEvent
     /// </summary>

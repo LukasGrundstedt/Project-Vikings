@@ -11,7 +11,7 @@ public class Soldier : Entity
     [SerializeField] private SoldierFaction factionID;
     //[SerializeField] private float angle;
 
-    [SerializeField] private Animator swordAnimator;
+    private Animator mainHandAnimator;
 
     [SerializeField] private LayerMask mask;
 
@@ -25,7 +25,7 @@ public class Soldier : Entity
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
 
-    public Action OnAttacked;
+    public Action<Soldier> OnAttacked;
 
 
     [field: SerializeField]
@@ -60,7 +60,11 @@ public class Soldier : Entity
     protected virtual void Setup()
     {
         EntityAgent.stoppingDistance = 0.1f;
+        mainHandAnimator = MainHand.HeldWeapon.WeaponAnimator;
+        MainHand.HeldWeapon.OnImpact += ResolveAttack;
         UpdateHealthBars();
+
+        OnAttacked += SetEnemy;
     }
 
     // Update is called once per frame
@@ -78,13 +82,13 @@ public class Soldier : Entity
         switch (animationIndex)
         {
             case 1:
-                swordAnimator.SetTrigger("Stab");
+                mainHandAnimator.SetTrigger("Stab");
                 break;
             case 2:
-                swordAnimator.SetTrigger("Slash1");
+                mainHandAnimator.SetTrigger("Slash1");
                 break;
             case 3:
-                swordAnimator.SetTrigger("Slash2");
+                mainHandAnimator.SetTrigger("Slash2");
                 break;
         }
 
@@ -93,12 +97,17 @@ public class Soldier : Entity
 
     private void ResolveAttack()
     {
-        Target.OnAttacked?.Invoke();
+        Target.OnAttacked?.Invoke(this);
 
         if (SuccessfulAttack())
         {
             Target.TakeDamage(dmg);
         }
+    }
+
+    private void SetEnemy(Soldier target)
+    {
+        GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, target.gameObject);
     }
 
     private bool SuccessfulAttack()
@@ -217,13 +226,9 @@ public class Soldier : Entity
         };
     }
 
-    private void OnEnable()
-    {
-        MainHand.HeldWeapon.OnImpact += ResolveAttack;
-    }
-
     private void OnDisable()
     {
         MainHand.HeldWeapon.OnImpact -= ResolveAttack;
+        OnAttacked -= SetEnemy;
     }
 }

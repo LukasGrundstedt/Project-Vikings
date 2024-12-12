@@ -11,7 +11,7 @@ public class Entity : MonoBehaviour, ISelectable
     public bool Highlighted { get; set; }
     public bool Selected { get; set; }
 
-    //Required for deriving classes, useless here though
+    //Required for deriving classes, useless here though / Required for everything that has a healthBar
     public Action<float> OnDamageTaken;
 
     [field: SerializeField]

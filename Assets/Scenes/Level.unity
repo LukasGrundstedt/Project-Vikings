@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -760,6 +760,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8504430002294997081, guid: 33541f5187d86144ba711499748fc37e,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -869,11 +874,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Unit
       objectReference: {fileID: 0}
-    - target: {fileID: 6007830557765170620, guid: 33541f5187d86144ba711499748fc37e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7043650283482761027, guid: 33541f5187d86144ba711499748fc37e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -925,7 +925,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9115784012581889453, guid: 33541f5187d86144ba711499748fc37e, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33541f5187d86144ba711499748fc37e, type: 3}
@@ -1362,6 +1363,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836e019919c47b443a7e2cdcf9981b3f, type: 3}
+--- !u!114 &930553277 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1367048292050815195, guid: 0f752c4658f78144eb4a2546a6dd99e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4927306832178476199}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c329baee9593de43b762f649f718353, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1037355605
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2053,6 +2066,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2880431523659175493, guid: 0f752c4658f78144eb4a2546a6dd99e8,
+        type: 3}
+      propertyPath: <HeldWeapon>k__BackingField
+      value: 
+      objectReference: {fileID: 930553277}
+    - target: {fileID: 3410561550228337492, guid: 0f752c4658f78144eb4a2546a6dd99e8,
+        type: 3}
+      propertyPath: m_Name
+      value: Knight Sword
+      objectReference: {fileID: 0}
     - target: {fileID: 3448753393172353576, guid: 0f752c4658f78144eb4a2546a6dd99e8,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2099,7 +2122,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 2192157830235116451, guid: 0f752c4658f78144eb4a2546a6dd99e8, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f752c4658f78144eb4a2546a6dd99e8, type: 3}
