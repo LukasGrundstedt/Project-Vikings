@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 //[ExecuteInEditMode]
 public class Soldier : Entity
 {
+    private ClassPreset classPreset;
+    [field: SerializeField]
     public ClassPreset ClassPreset { get; private set; }
 
     [SerializeField] private SoldierFaction factionID;
@@ -53,7 +55,7 @@ public class Soldier : Entity
 
     public void ApplyPreset(ClassPreset classPreset)
     {
-        ClassPreset = classPreset;
+        this.classPreset = classPreset;
 
         Portrait = classPreset.Portrait;
         maxHp = classPreset.MaxHp;
@@ -250,6 +252,20 @@ public class Soldier : Entity
         {
             atk, dmg, def, armor, attackSpeed, AttackRange
         };
+    }
+
+    private void OnEnable()
+    {
+        classPreset = ClassPreset;
+    }
+
+    private void OnValidate()
+    {
+        if (!ClassPreset) return;
+        if (ClassPreset != classPreset)
+        {
+            ApplyPreset(ClassPreset);
+        }
     }
 
     private void OnDisable()
