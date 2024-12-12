@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 //[ExecuteInEditMode]
 public class Soldier : Entity
 {
+    public ClassPreset ClassPreset { get; private set; }
+
     [SerializeField] private SoldierFaction factionID;
     //[SerializeField] private float angle;
 
@@ -15,13 +17,13 @@ public class Soldier : Entity
 
     [SerializeField] private LayerMask mask;
 
-    [SerializeField] protected int maxHp;
-    [SerializeField] protected int hp;
-    [SerializeField] protected int atk;
-    [SerializeField] protected float attackSpeed;
-    [SerializeField] protected int dmg;
-    [SerializeField] protected int def;
-    [SerializeField] protected int armor;
+    [SerializeField] private int maxHp;
+    [SerializeField] private int hp;
+    [SerializeField] private int atk;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private int dmg;
+    [SerializeField] private int def;
+    [SerializeField] private int armor;
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
 
@@ -47,6 +49,30 @@ public class Soldier : Entity
         None,
         Free,
         Intercepted
+    }
+
+    public void ApplyPreset(ClassPreset classPreset)
+    {
+        ClassPreset = classPreset;
+
+        Portrait = classPreset.Portrait;
+        maxHp = classPreset.MaxHp;
+        hp = classPreset.Hp;
+        atk = classPreset.Atk;
+        dmg = classPreset.Dmg;
+        def = classPreset.Def;
+        armor = classPreset.Armor;
+        attackSpeed = classPreset.AttackSpeed;
+        AttackRange = classPreset.AttackRange;
+
+        if (MainHand.transform.childCount == 0)
+        {
+            Instantiate(classPreset.MainHand, MainHand.transform);
+        }
+        if (OffHand.transform.childCount == 0)
+        {
+            Instantiate(classPreset.OffHand, OffHand.transform);
+        }
     }
 
     // Start is called before the first frame update

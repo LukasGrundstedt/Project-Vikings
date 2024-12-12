@@ -45,6 +45,4 @@ public class FightingState : State
     {
         soldier.EntityAgent.destination = opponent.transform.position - soldier.transform.forward * 2;
     }
-
-    
 }

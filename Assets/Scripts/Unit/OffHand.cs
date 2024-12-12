@@ -12,4 +12,9 @@ public class OffHand : MonoBehaviour
     public bool OffHandFull {  get; set; }
 
     public GameObject OffHandObj { get => offHandObj; set => offHandObj = value; }
+
+    public void Awake()
+    {
+        HeldWeapon = GetComponentInChildren<Weapon>();
+    }
 }
