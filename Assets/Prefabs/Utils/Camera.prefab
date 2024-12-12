@@ -107,7 +107,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -146,7 +146,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2140530916363503299
 Transform:
   m_ObjectHideFlags: 0
@@ -193,12 +193,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -5.07
+  m_Depth: -4.56
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 64
@@ -284,8 +284,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5535688809005395535}
   - component: {fileID: 7213790543307952737}
-  - component: {fileID: 4091421772344482413}
   - component: {fileID: 3907614051948272826}
+  - component: {fileID: 7336215415115672740}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -341,7 +341,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -361,14 +361,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &4091421772344482413
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3662588182137726619}
-  m_Enabled: 1
 --- !u!114 &3907614051948272826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,7 +379,6 @@ MonoBehaviour:
   m_CameraType: 0
   m_Cameras:
   - {fileID: 1890324474709886777}
-  - {fileID: 1103525454284095798}
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
@@ -415,6 +406,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &7336215415115672740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3662588182137726619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attenuationObject: {fileID: 0}
 --- !u!1 &5294831117650928201
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +528,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6655556336709466371}
-  m_Mesh: {fileID: -8678823145569952518, guid: 381dad6902b04404f8f0758c3a9a8326, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &8000685461221936711
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -532,7 +536,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6655556336709466371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
