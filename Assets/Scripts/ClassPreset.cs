@@ -15,6 +15,7 @@ public class ClassPreset : ScriptableObject
     public int Armor;
     public float AttackSpeed;
     public float AttackRange;
+    public float AggroRange;
 
     public GameObject MainHand;
     public GameObject OffHand;

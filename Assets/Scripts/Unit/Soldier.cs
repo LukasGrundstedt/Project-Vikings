@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -12,7 +13,9 @@ public class Soldier : Entity
     [field: SerializeField]
     public ClassPreset ClassPreset { get; private set; }
 
-    [SerializeField] private SoldierFaction factionID;
+    [field: SerializeField] 
+    public SoldierFaction FactionID { get; private set; }
+
     //[SerializeField] private float angle;
 
     private Animator mainHandAnimator;
@@ -29,8 +32,9 @@ public class Soldier : Entity
     public float AttackCooldown { get; private set; }
     public float AttackRange { get; private set; } = 2.1f;
 
-    public Action<Soldier> OnAttacked;
+    [SerializeField] private AggroTrigger aggroTrigger;
 
+    public Action<Soldier> OnAttacked;
 
     [field: SerializeField]
     public MainHand MainHand { get; set; }
@@ -67,14 +71,25 @@ public class Soldier : Entity
         attackSpeed = classPreset.AttackSpeed;
         AttackRange = classPreset.AttackRange;
 
+#if UNITY_EDITOR
         if (MainHand.transform.childCount == 0)
         {
-            Instantiate(classPreset.MainHand, MainHand.transform);
+            PrefabUtility.InstantiatePrefab(classPreset.MainHand, MainHand.transform);
+        }
+        if (OffHand.transform.childCount == 0)
+        {
+            PrefabUtility.InstantiatePrefab(classPreset.OffHand, OffHand.transform);
+        }
+#else
+        if (MainHand.transform.childCount == 0)
+        {
+             Instantiate(classPreset.MainHand, MainHand.transform);
         }
         if (OffHand.transform.childCount == 0)
         {
             Instantiate(classPreset.OffHand, OffHand.transform);
         }
+#endif
     }
 
     // Start is called before the first frame update
@@ -87,6 +102,8 @@ public class Soldier : Entity
 
     protected virtual void Setup()
     {
+        aggroTrigger.SoldierFaction = FactionID;
+        aggroTrigger.OnTriggered += AddTarget;
         EntityAgent.stoppingDistance = 0.1f;
         mainHandAnimator = MainHand.HeldWeapon.WeaponAnimator;
         MainHand.HeldWeapon.OnImpact += ResolveAttack;
@@ -158,6 +175,11 @@ public class Soldier : Entity
         }
     }
 
+    protected virtual void Die()
+    {
+        GetComponent<Animation>().Play();
+    }
+
     private void DetermineAttackSuccess(out AttackSuccess attackSuccess)
     {
         RaycastHit[] hits = Physics.RaycastAll(transform.position, transform.forward, AttackRange + 1f, mask);
@@ -165,7 +187,7 @@ public class Soldier : Entity
 
         for (int i = 0; i < hits.Length; i++)
         {
-            if (hits[i].collider.transform.root.GetComponent<Soldier>().factionID != factionID)
+            if (hits[i].collider.transform.root.GetComponent<Soldier>().FactionID != FactionID)
             {
                 hitInfo = hits[i];
                 break;
@@ -192,6 +214,7 @@ public class Soldier : Entity
                 attackSuccess = AttackSuccess.None;
                 break;
         }
+        Debug.Log(attackSuccess);
     }
 
     private bool TryBreakDefense(Soldier target)
@@ -202,7 +225,7 @@ public class Soldier : Entity
         int probability = Random.Range(1, 11);
 
         bool outcome = advantage >= probability;
-        Debug.Log($"advantage: {advantage} probability: {probability}");
+        Debug.Log($"Attaker: {gameObject.name}, advantage roll: {advantage}, advantage requiered: {probability}");
 
         return outcome;
     }
@@ -212,6 +235,8 @@ public class Soldier : Entity
         hp = Mathf.Clamp(hp - value, 0, hp);
 
         UpdateHealthBars();
+
+        if (hp == 0) Die();
     }
 
     protected void UpdateHealthBars()
@@ -254,6 +279,11 @@ public class Soldier : Entity
         };
     }
 
+    private void AddTarget(GameObject target)
+    {
+        GetComponent<BehaviourStateMachine>().SetAction(ActionType.Attack, target);
+    }
+
     private void OnEnable()
     {
         classPreset = ClassPreset;
@@ -261,7 +291,11 @@ public class Soldier : Entity
 
     private void OnValidate()
     {
-        if (!ClassPreset) return;
+        if (!ClassPreset)
+        {
+            classPreset = null;
+            return;
+        }
         if (ClassPreset != classPreset)
         {
             ApplyPreset(ClassPreset);

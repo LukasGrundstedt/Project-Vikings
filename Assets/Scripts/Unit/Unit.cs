@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Unit : Soldier
 {
+    //[Header("Unit fields")]
     public GameObject CarriedMainObj { get; set; }
     public GameObject CarriedOffObj { get; set; }
 
@@ -67,6 +68,12 @@ public class Unit : Soldier
                DropAnyObject(CarriedOffObj);
             }
         }
+    }
+
+    protected override void Die()
+    {
+        GetComponent<Animation>().Play();
+        OnDeath?.Invoke();
     }
 
     public override void OnMouseDown()

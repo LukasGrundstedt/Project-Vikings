@@ -20,7 +20,8 @@ MonoBehaviour:
   Def: 10
   Armor: 10
   AttackSpeed: 1
-  AttackRange: 1
+  AttackRange: 2.1
+  AggroRange: 0
   MainHand: {fileID: 8841227928357945990, guid: 9630c30630f952146a69b5afdf6f93f1,
     type: 3}
   OffHand: {fileID: 6106329119406076038, guid: ae55d6505fa48e74eb24398201a5d80c, type: 3}

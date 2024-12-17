@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainHandObj: {fileID: 7102793609232060933}
-  <HeldWeapon>k__BackingField: {fileID: 0}
 --- !u!1 &7525709813629568017
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +191,7 @@ GameObject:
   - component: {fileID: 6243195611497323279}
   - component: {fileID: 2073890957973693715}
   - component: {fileID: 7741485195559158143}
+  - component: {fileID: 1692128742132927938}
   m_Layer: 7
   m_Name: Entity
   m_TagString: Untagged
@@ -231,19 +231,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   portrait: {fileID: 0}
+  <OutlineColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <SelectVisual>k__BackingField: {fileID: 0}
+  <ClassPreset>k__BackingField: {fileID: 0}
+  <FactionID>k__BackingField: 0
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
   maxHp: 100
   hp: 100
-  attack: 10
-  dmg: 10
+  atk: 0
   attackSpeed: 1
-  defense: 10
+  dmg: 10
+  def: 0
   armor: 10
-  statDisplay: {fileID: 0}
-  swordAnimator: {fileID: 0}
+  aggroTrigger: {fileID: 0}
   <MainHand>k__BackingField: {fileID: 8884474259956995868}
   <OffHand>k__BackingField: {fileID: 8062552894616801625}
   <Target>k__BackingField: {fileID: 0}
   <EntityAgent>k__BackingField: {fileID: 2073890957973693715}
+  healthbar: {fileID: 0}
 --- !u!114 &5257735182627397485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,16 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e7c3bf94d9da842a83b23f86aa56c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
   <OutlineColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   <SelectVisual>k__BackingField: {fileID: 7525709813629568017}
-  stats:
-    MaxHp: 100
-    Hp: 100
-    Atk: 10
-    Dmg: 10
-    AttackSpeed: 1
-    Def: 10
-    Armor: 10
 --- !u!33 &6274911323469191000
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -401,6 +401,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!111 &1692128742132927938
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8824837721375528786}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 453be6ac47395c045a7ce9586b4250bc, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 453be6ac47395c045a7ce9586b4250bc, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1001 &5203486774421648277
 PrefabInstance:
   m_ObjectHideFlags: 0

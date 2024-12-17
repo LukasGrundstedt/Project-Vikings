@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: a4de758424bc0f342a2327650da1e7fc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - displayParent: {instanceID: 0}
+  - uiHealthBar: {instanceID: 0}
+  - label: {instanceID: 0}
+  - portrait: {instanceID: 0}
+  - unitPortraitFrame: {instanceID: 0}
+  - selectionHighlight: {instanceID: 0}
+  - deathSprite: {fileID: 21300000, guid: 38062518e2212e64c8f84932ce52b14d, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

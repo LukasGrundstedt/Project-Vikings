@@ -11,6 +11,10 @@ public class OffHand : MonoBehaviour
 
     public bool OffHandFull {  get; set; }
 
+    /// <summary>
+    /// The actual GameObject acting as the Hand, not what is held by the Hand
+    /// </summary>
+    [Tooltip("The actual GameObject acting as the Hand, not what is held by the Hand")]
     public GameObject OffHandObj { get => offHandObj; set => offHandObj = value; }
 
     public void Awake()

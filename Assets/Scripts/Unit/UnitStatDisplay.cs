@@ -10,6 +10,8 @@ public class UnitStatDisplay : EntityStatDisplay
     [Tooltip("Portrait Selection Circle")]
     [SerializeField] private GameObject selectionHighlight;
 
+    [SerializeField] private Sprite deathSprite;
+
     // required to hide base awake
     new protected void Awake()
     {
@@ -28,6 +30,7 @@ public class UnitStatDisplay : EntityStatDisplay
 
         displayedEntity = GetComponent<Entity>();
         displayedEntity.OnDamageTaken += UpdateHealthbar;
+        displayedEntity.OnDeath += () => portrait.sprite = deathSprite;
         portrait.sprite = displayedEntity.Portrait;
         DisplayStats(displayedEntity.DisplayableHp(), displayedEntity.DisplayableStats());
     }

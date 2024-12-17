@@ -229,6 +229,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
         type: 3}
+      propertyPath: <FactionID>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1529428868162199209, guid: 88fb260cbca185b448558ec931a18f2c,
+        type: 3}
       propertyPath: <SelectVisual>k__BackingField
       value: 
       objectReference: {fileID: 2335707005763420941}
@@ -418,26 +423,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3388707309831924210, guid: 448bd004183427c48a32197d07cf6fe7,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3388707309831924210, guid: 448bd004183427c48a32197d07cf6fe7,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3388707309831924210, guid: 448bd004183427c48a32197d07cf6fe7,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3388707309831924210, guid: 448bd004183427c48a32197d07cf6fe7,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 3388707309831924210, guid: 448bd004183427c48a32197d07cf6fe7,
         type: 3}
