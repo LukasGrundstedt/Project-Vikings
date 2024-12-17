@@ -30,7 +30,7 @@ public class FightingState : State
 
         soldierShield.ShieldOpponent(targetSoldier.gameObject);
 
-        if (soldier.transform.position.CompareDistance(targetSoldier.gameObject.transform.position) > soldier.AttackRange) return;
+        if (soldier.transform.position.CompareDistance(targetSoldier.gameObject.transform.position) > soldier.AttackRange + 0.1f) return;
         if (soldier.AttackCooldown > 0f) return;
         soldier.Attack();
     }
@@ -43,6 +43,6 @@ public class FightingState : State
 
     private void FaceOpponent(GameObject opponent)
     {
-        soldier.EntityAgent.destination = opponent.transform.position - soldier.transform.forward * 2;
+        soldier.EntityAgent.destination = opponent.transform.position - soldier.transform.forward * soldier.AttackRange;
     }
 }

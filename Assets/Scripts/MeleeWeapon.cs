@@ -5,15 +5,14 @@ using System;
 
 public class MeleeWeapon : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int weaponDmg;
+    [SerializeField] private float weaponAtkSpeed;
+    [SerializeField] private float weaponRange;
 
-    // Update is called once per frame
-    void Update()
+    public void IncreaseStats(ref int dmg, ref float atkSpeed, ref float atkRange)
     {
-        
+        dmg += weaponDmg;
+        atkSpeed += weaponAtkSpeed;
+        atkRange += weaponRange;
     }
 }

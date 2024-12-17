@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
 
-//[ExecuteInEditMode]
 public class Soldier : Entity
 {
     private ClassPreset classPreset;
@@ -90,6 +89,11 @@ public class Soldier : Entity
             Instantiate(classPreset.OffHand, OffHand.transform);
         }
 #endif
+    }
+
+    public void EquipWeapon(Weapon weapon)
+    {
+
     }
 
     // Start is called before the first frame update
